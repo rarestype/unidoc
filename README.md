@@ -23,8 +23,6 @@ Unidoc supports Linux and macOS. Unidoc requires Swift 6.2.
 | Platform | Status |
 | -------- | ------ |
 | 💬 Documentation | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Documentation/_all/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Documentation.yml) |
-|  | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Documentation/Linux/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Documentation.yml) |
-|  | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Documentation/macOS/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Documentation.yml) |
 | 🐧 Linux (server) | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Tests/Linux-server/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Tests.yml) |
 | 🐧 Linux | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Tests/Linux/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Tests.yml) |
 | 🍏 Darwin | [![Status](https://raw.githubusercontent.com/rarestype/unidoc/refs/badges/ci/Tests/macOS/status.svg)](https://github.com/rarestype/unidoc/actions/workflows/Tests.yml) |
