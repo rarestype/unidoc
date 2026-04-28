@@ -103,8 +103,8 @@ extension SSGC.ModuleLayout {
                 let resource: SSGC.LazyFile = .init(location: $0, path: root.rebase($0))
                 self.resources.append(resource)
             }
-        } directory: {
-            _ in .descend
+        } directory: { _ in
+            .descend
         }
     }
 

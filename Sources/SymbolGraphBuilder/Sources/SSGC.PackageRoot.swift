@@ -67,8 +67,7 @@ extension SSGC.PackageRoot {
 
     func chapters() throws -> [SSGC.ModuleLayout] {
         var bundles: [(FilePath.Directory, FilePath.Component)] = []
-        try location.walk {
-            (_, _) in
+        try location.walk { (_, _) in
         } directory: {
             switch $1.extension {
             case "docc"?, "unidoc"?:
@@ -109,8 +108,8 @@ extension SSGC.PackageRoot {
                 name: $1.stem
             )
             snippets.append(snippet)
-        } directory: {
-            (_, _) in .descend
+        } directory: { (_, _) in
+            .descend
         }
 
         return snippets
