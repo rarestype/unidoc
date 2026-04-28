@@ -67,14 +67,15 @@ extension SSGC.PackageRoot {
 
     func chapters() throws -> [SSGC.ModuleLayout] {
         var bundles: [(FilePath.Directory, FilePath.Component)] = []
-        try location.walk {
+        try location.walk { (_, _) in
+        } directory: {
             switch $1.extension {
             case "docc"?, "unidoc"?:
                 bundles.append(($0, $1))
-                return false
+                return nil
 
             default:
-                return ($0 / $1).exists()
+                return .descend
             }
         }
 
@@ -95,29 +96,20 @@ extension SSGC.PackageRoot {
 
         var snippets: [SSGC.LazyFile] = []
         try snippetsDirectory.walk {
-            let file: (path: FilePath, extension: String)
-
-            if  let `extension`: String = $1.extension {
-                file.extension = `extension`
-                file.path = $0 / $1
-            } else {
-                //  directory, or some extensionless file we don’t care about
-                return true
+            guard case "swift"? = $1.extension else {
+                return
             }
 
-            if  file.extension == "swift" {
-                //  Should we be mangling URL-unsafe characters?
-                let snippet: SSGC.LazyFile = .init(
-                    location: file.path,
-                    path: self.rebase(file.path),
-                    name: $1.stem
-                )
-
-                snippets.append(snippet)
-                return true
-            } else {
-                return true
-            }
+            let file: FilePath = $0 / $1
+            //  Should we be mangling URL-unsafe characters?
+            let snippet: SSGC.LazyFile = .init(
+                location: file,
+                path: self.rebase(file),
+                name: $1.stem
+            )
+            snippets.append(snippet)
+        } directory: { (_, _) in
+            .descend
         }
 
         return snippets

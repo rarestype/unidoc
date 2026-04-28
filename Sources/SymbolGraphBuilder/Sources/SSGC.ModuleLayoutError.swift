@@ -1,5 +1,8 @@
+import SystemIO
+
 extension SSGC {
     enum ModuleLayoutError: Error {
-        case foundMultipleModulemapFiles
+        case foundMultipleModulemaps(FilePath, FilePath)
+        case missingSourcesDirectory(FilePath.Directory)
     }
 }

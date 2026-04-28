@@ -14,7 +14,12 @@ extension Unidoc.BuildArtifact {
                     type: type
                 )
             )
-        } catch FileError.opening(_, .noSuchFileOrDirectory) {
+        } catch let error as FileError {
+            // FIXME: we lost the atomic read-or-check existence API in the swift-io upgrade,
+            // checking for non-nil error path is the next best thing
+            if case nil = error.path {
+                throw error
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ extension SSGC {
 extension SSGC.PackageBuild {
     private func listExtraManifests() throws -> [MinorVersion] {
         var versions: [MinorVersion] = []
-        for file: Result<FilePath.Component, any Error> in self.root {
+        for file: Result<FilePath.Component, FileError> in self.root {
             let file: FilePath.Component = try file.get()
             let name: String = file.stem
 
