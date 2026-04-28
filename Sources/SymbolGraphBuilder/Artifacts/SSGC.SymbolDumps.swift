@@ -22,7 +22,7 @@ extension SSGC.SymbolDumps {
         let symbols: [Symbol.Module: SSGC.SymbolFiles] = try locations.reduce(
             into: [:]
         ) {
-            for filename: Result<FilePath.Component, any Error> in $1 {
+            for filename: Result<FilePath.Component, FileError> in $1 {
                 //  We don’t want to *parse* the JSON yet to discover the culture,
                 //  because the JSON can be very large, and parsing JSON is very
                 //  expensive (compared to parsing BSON). So we trust that the file

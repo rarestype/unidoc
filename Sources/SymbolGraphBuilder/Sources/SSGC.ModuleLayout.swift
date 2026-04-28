@@ -71,9 +71,7 @@ extension SSGC.ModuleLayout {
                 //  try scanning the directory itself.
                 self.origin = .sources(sources)
             } else {
-                //  Artifically synthesize the error we would have caught if we had tried to
-                //  scan the nonexistent directory.
-                throw FileError.opening(nested.path, .noSuchFileOrDirectory)
+                throw SSGC.ModuleLayoutError.missingSourcesDirectory(nested)
             }
         }
 
@@ -91,10 +89,6 @@ extension SSGC.ModuleLayout {
         package root: SSGC.PackageRoot
     ) throws {
         try directory.walk {
-            if $0.directory.exists() {
-                return true
-            }
-
             switch $0.extension {
             case "tutorial"?, "md"?:
                 let markdown: SSGC.LazyFile = .init(location: $0, root: root)
@@ -108,8 +102,9 @@ extension SSGC.ModuleLayout {
                 //  is a resource.
                 let resource: SSGC.LazyFile = .init(location: $0, path: root.rebase($0))
                 self.resources.append(resource)
-                return false
             }
+        } directory: {
+            _ in .descend
         }
     }
 
@@ -134,40 +129,23 @@ extension SSGC.ModuleLayout {
             let file: (path: FilePath, extension: String)
 
             switch $1.extension {
+            case nil:
+                return
+
             case "md"?:
-                //  It’s common to list markdown files under exclude paths.
                 file.path = $0 / $1
-
-                if  file.path.directory.exists() {
-                    //  Someone has named a directory with a `.md` extension. Perhaps it
-                    //  contains markdown files?
-                    return true
-                } else {
-                    let supplement: SSGC.LazyFile = .init(location: $0 / $1, root: root)
-                    self.markdown.append(supplement)
-                    return false
-                }
-
-            case "docc"?, "unidoc"?:
-                //  We will visit these later.
-                file.path = $0 / $1
-                bundles.append(file.path.directory)
-                return false
+                let supplement: SSGC.LazyFile = .init(location: $0 / $1, root: root)
+                self.markdown.append(supplement)
+                return
 
             case let other?:
                 file.path = $0 / $1
                 file.extension = other
-
-            case nil:
-                file.path = $0 / $1
-                return file.path.directory.exists()
             }
 
             //  TODO: might benefit from a better algorithm.
-            for prefix: FilePath in exclude {
-                if  file.path.starts(with: prefix) {
-                    return false
-                }
+            for prefix: FilePath in exclude where file.path.starts(with: prefix) {
+                return
             }
 
             switch file.extension {
@@ -187,19 +165,19 @@ extension SSGC.ModuleLayout {
                 //  But modulemaps do.
                 headers.update(with: $0)
 
-                guard case nil = self.modulemap else {
-                    throw SSGC.ModuleLayoutError.foundMultipleModulemapFiles
+                if  let modulemap: FilePath = self.modulemap {
+                    throw SSGC.ModuleLayoutError.foundMultipleModulemaps(modulemap, file.path)
                 }
 
                 self.modulemap = file.path
-                fallthrough
+                self.module.language |= .c
 
             case "c":
                 self.module.language |= .c
 
             case "hpp", "hxx":
                 headers.update(with: $0)
-                fallthrough
+                self.module.language |= .cpp
 
             case "cc", "cpp", "cxx":
                 self.module.language |= .cpp
@@ -216,8 +194,18 @@ extension SSGC.ModuleLayout {
             default:
                 print("Unknown file type: \(file.path)")
             }
+        } directory: {
+            switch $1.extension {
+            case "docc"?, "unidoc"?:
+                // we will visit these later.
+                bundles.append($0 / $1)
+                return nil
 
-            return true
+            default:
+                // even if the directory is excluded, we still have to search it,
+                // as it is common to list markdown files under exclude paths
+                return .descend
+            }
         }
 
         for bundle: FilePath.Directory in bundles {
