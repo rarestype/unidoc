@@ -41,10 +41,10 @@ extension SSGC.Toolchain {
         paths: Paths = .init(swiftPM: nil, usr: try? Environment["SWIFT_INSTALLATION"]),
         recoverFromAppleBugs: Bool = true,
         pretty: Bool = false
-    ) throws -> Self {
+    ) async throws -> Self {
         .init(
             appleSDK: appleSDK,
-            splash: try .init(running: paths.swiftCommand),
+            splash: try await .init(running: paths.swiftCommand),
             paths: paths,
             recoverFromAppleBugs: recoverFromAppleBugs,
             pretty: pretty

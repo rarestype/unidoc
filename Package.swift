@@ -332,6 +332,7 @@ let package: Package = .init(
                 .target(name: "PackageMetadata"),
                 .target(name: "SymbolGraphCompiler"),
                 .target(name: "SymbolGraphLinker"),
+                .product(name: "SystemAsync", package: "swift-io"),
                 .product(name: "SystemIO", package: "swift-io"),
                 .product(name: "System_ArgumentParser", package: "swift-io"),
             ]

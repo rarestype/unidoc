@@ -1,5 +1,6 @@
 import SHA1
 import Symbols
+import SystemAsync
 import SystemIO
 import UnixTime
 
@@ -24,7 +25,7 @@ extension SSGC.Checkout {
         at reference: String,
         in workspace: SSGC.Workspace,
         clean: Bool = false
-    ) throws -> Self {
+    ) async throws -> Self {
         //  The directory layout looks something like:
         //
         //  myworkspace/
@@ -64,35 +65,25 @@ extension SSGC.Checkout {
             "--recurse-submodules"
         )()
 
-        let (readable, writable): (FileDescriptor, FileDescriptor) =
-        try FileDescriptor.pipe()
-
-        defer {
-            try? writable.close()
-            try? readable.close()
-        }
-
         // Get the SHA-1 hash of the current commit
-        try SystemProcess.init(
-            command: "git", "-C", "\(clone)",
-            "rev-list", "-n", "1", reference,
-            stdout: writable
-        )()
-
-        let revisionLine: String = try .init(unsafeUninitializedCapacity: 64) {
-            try readable.read(into: .init($0))
+        let (revisionLine, _): (stdout: String, _) = try await Subprocess.capture {
+            try SystemProcess.init(
+                command: "git", "-C", "\(clone)",
+                "rev-list", "-n", "1", reference,
+                stdout: $1,
+                stderr: $2,
+            )
         }
 
         //  Get the timestamp of the current commit, in seconds since the Unix epoch.
         //  64 bytes should be enough for any Unix timestamp.
-        try SystemProcess.init(
-            command: "git", "-C", "\(clone)",
-            "log", "-1", "--format=%ct",
-            stdout: writable
-        )()
-
-        let unixSecondLine: String = try .init(unsafeUninitializedCapacity: 64) {
-            try readable.read(into: .init($0))
+        let (unixSecondLine, _): (stdout: String, _) = try await Subprocess.capture {
+            try SystemProcess.init(
+                command: "git", "-C", "\(clone)",
+                "log", "-1", "--format=%ct",
+                stdout: $1,
+                stderr: $2,
+            )
         }
 
         //  Note: output lines contains trailing newline

@@ -9,9 +9,9 @@ import Testing
     private let workspace: SSGC.Workspace
     private let toolchain: SSGC.Toolchain
 
-    init() throws {
+    init() async throws {
         self.workspace = try .create(at: ".build.testing")
-        self.toolchain = try .detect(pretty: true)
+        self.toolchain = try await .detect(pretty: true)
 
         print(
             """

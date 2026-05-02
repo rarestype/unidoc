@@ -89,8 +89,8 @@ extension SSGC {
 }
 extension SSGC.BuildOptions {
     var toolchain: SSGC.Toolchain {
-        get throws {
-            try .detect(
+        get async throws {
+            try await .detect(
                 appleSDK: self.appleSDK,
                 paths: .init(swiftPM: self.swiftCache, usr: self.swiftTools),
                 recoverFromAppleBugs: true, // self.recoverFromAppleBugs,

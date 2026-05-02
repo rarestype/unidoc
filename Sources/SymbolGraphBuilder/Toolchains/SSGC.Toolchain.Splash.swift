@@ -1,6 +1,7 @@
 import SemanticVersions
 import SymbolGraphs
 import Symbols
+import SystemAsync
 import SystemIO
 
 extension SSGC.Toolchain {
@@ -74,15 +75,10 @@ extension SSGC.Toolchain.Splash {
         self.init(commit: commit, triple: triple, swift: id)
     }
 
-    public init(running command: String) throws {
-        let (readable, writable): (FileDescriptor, FileDescriptor) = try FileDescriptor.pipe()
-
-        defer { try? readable.close() }
-        do {
-            // Close the parent’s write end of the pipe so EOF can be reached
-            defer { try? writable.close() }
-            try SystemProcess.init(command: command, "--version", stdout: writable)()
+    public init(running command: String) async throws {
+        let (splash, _): (stdout: String, _) = try await Subprocess.capture {
+            try SystemProcess.init(command: command, "--version", stdout: $1, stderr: $2)
         }
-        try self.init(parsing: try readable.read(buffering: 1024))
+        try self.init(parsing: splash)
     }
 }

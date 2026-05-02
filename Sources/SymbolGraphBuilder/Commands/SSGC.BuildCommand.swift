@@ -31,26 +31,26 @@ extension SSGC {
 extension SSGC.BuildCommand: AsyncParsableCommand {
     public static let configuration: CommandConfiguration = .init(commandName: "build")
 
-    public func run() throws {
+    public func run() async throws {
         let validation: SSGC.ValidationBehavior = self.build.ci ?? .ignoreErrors
 
         guard
         let path: FilePath = self.build.outputLog else {
-            try self.launch(logger: .init(validation: validation, file: nil))
+            try await self.launch(logger: .init(validation: validation, file: nil))
             return
         }
 
-        try path.open(
+        try await path.open(
             .writeOnly,
             permissions: (.rw, .r, .r),
             options: [.create, .truncate]
         ) {
-            try self.launch(logger: .init(validation: validation, file: $0))
+            try await self.launch(logger: .init(validation: validation, file: $0))
         }
     }
 
-    private func launch(logger: SSGC.Logger) throws {
-        let toolchain: SSGC.Toolchain = try self.build.toolchain
+    private func launch(logger: SSGC.Logger) async throws {
+        let toolchain: SSGC.Toolchain = try await self.build.toolchain
         let object: SymbolGraphObject<Void>
 
         if  case "swift"? = self.build.projectName {

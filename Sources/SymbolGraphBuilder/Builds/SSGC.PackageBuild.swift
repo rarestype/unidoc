@@ -128,8 +128,8 @@ extension SSGC.PackageBuild {
         in workspace: SSGC.Workspace,
         flags: Flags = .init(),
         clean: Bool = false
-    ) throws -> Self {
-        let checkout: SSGC.Checkout = try .checkout(
+    ) async throws -> Self {
+        let checkout: SSGC.Checkout = try await .checkout(
             project: projectName,
             from: repository,
             at: refName,
