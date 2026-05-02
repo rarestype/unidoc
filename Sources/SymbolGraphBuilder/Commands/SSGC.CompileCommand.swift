@@ -114,12 +114,12 @@ extension SSGC.CompileCommand {
         if  let file: Int32 = self.status {
             status = .init(file: .init(rawValue: file))
         } else {
-            let workspace: SSGC.Workspace = .init(location: workspacePath)
+            let workspace: SSGC.Workspace = try .init(location: workspacePath)
             try self.launch(workspace: workspace, status: nil)
             return
         }
 
-        let workspace: SSGC.Workspace = .init(location: workspacePath)
+        let workspace: SSGC.Workspace = try .init(location: workspacePath)
         do {
             try self.launch(workspace: workspace, status: status)
         } catch let error as SSGC.ManifestDumpError {
@@ -250,7 +250,7 @@ extension SSGC.CompileCommand {
                 throw SSGC.ProjectPathRequiredError.init()
             }
 
-            let package: SSGC.PackageBuild = .local(
+            let package: SSGC.PackageBuild = try .local(
                 project: computedPath,
                 using: ".build.ssgc",
                 as: self.build.projectType,

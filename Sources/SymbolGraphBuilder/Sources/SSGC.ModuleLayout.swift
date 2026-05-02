@@ -64,7 +64,7 @@ extension SSGC.ModuleLayout {
             let sources: FilePath.Directory = package.location / directory.name
             let nested: FilePath.Directory = sources / self.module.name
 
-            if  nested.exists() {
+            if  try nested.exists {
                 self.origin = .sources(nested)
             } else if case 1? = count[directory] {
                 //  If there is only one module that should be in this directory, we can

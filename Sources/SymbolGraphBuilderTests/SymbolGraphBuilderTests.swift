@@ -86,7 +86,7 @@ import Testing
         }
         #endif
 
-        let package: SSGC.PackageBuild = .local(
+        let package: SSGC.PackageBuild = try .local(
             project: "TestPackages" / "swift-snippets"
         )
 

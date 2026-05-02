@@ -18,12 +18,12 @@ extension SSGC.Workspace {
     @inlinable public var checkouts: FilePath.Directory { self.location / "checkouts" }
 }
 extension SSGC.Workspace {
-    init(location: FilePath.Directory) {
-        self.init(absolute: location.absolute())
+    init(location: FilePath.Directory) throws {
+        self.init(absolute: try location.absolute())
     }
 
     public static func create(at location: FilePath.Directory) throws -> Self {
-        let workspace: Self = .init(location: location)
+        let workspace: Self = try .init(location: location)
         try workspace.cache.create()
         try workspace.checkouts.create()
         return workspace

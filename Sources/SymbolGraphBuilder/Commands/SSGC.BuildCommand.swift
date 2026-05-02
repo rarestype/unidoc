@@ -68,7 +68,7 @@ extension SSGC.BuildCommand: AsyncParsableCommand {
                 clean: self.cleanArtifacts
             )
         } else {
-            let package: SSGC.PackageBuild = .local(
+            let package: SSGC.PackageBuild = try .local(
                 project: self.projectPath,
                 using: ".build.ssgc",
                 as: self.build.projectType,

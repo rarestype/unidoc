@@ -79,10 +79,10 @@ extension SSGC.PackageBuild {
         using scratchName: FilePath.Component = ".build.ssgc",
         as type: SSGC.ProjectType = .package,
         flags: Flags = .init()
-    ) -> Self {
+    ) throws -> Self {
         /// The projects path could be absolute or relative. If it’s relative, we need to
         /// convert it to an absolute path.
-        let location: FilePath.Directory = location.absolute()
+        let location: FilePath.Directory = try location.absolute()
         /// For a local project, the project name is the last component of the path, lowercased.
         guard
         let last: FilePath.Component = location.path.components.last else {

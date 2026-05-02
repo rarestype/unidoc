@@ -198,7 +198,7 @@ extension SSGC.Toolchain {
         cache: FilePath.Directory
     ) throws -> FilePath.Directory {
         let cached: FilePath.Directory = cache / "swift@\(self.splash.swift.version)"
-        if  cached.exists() {
+        if  try cached.exists {
             return cached
         }
 

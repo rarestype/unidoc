@@ -90,7 +90,7 @@ extension SSGC.PackageRoot {
 
     func snippets(in snippetsDirectory: FilePath.Component) throws -> [SSGC.LazyFile] {
         let snippetsDirectory: FilePath.Directory = self.location / snippetsDirectory
-        if !snippetsDirectory.exists() {
+        if  try !snippetsDirectory.exists {
             return []
         }
 

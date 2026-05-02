@@ -48,7 +48,7 @@ extension SSGC.Checkout {
             print("Pulling repository from remote: \(repository)")
         }
 
-        if  clone.exists() {
+        if  try clone.exists {
             try SystemProcess.init(command: "git", "-C", "\(clone)", "fetch")()
         } else {
             try SystemProcess.init(
