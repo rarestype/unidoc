@@ -99,9 +99,9 @@ extension UpCommand {
     }
 
     private var triple: Symbol.Triple {
-        get throws {
+        get async throws {
             let tools: SSGC.Toolchain.Paths = .init(swiftPM: nil, usr: self.toolchain)
-            let splash: SSGC.Toolchain.Splash = try .init(running: tools.swiftCommand)
+            let splash: SSGC.Toolchain.Splash = try await .init(running: tools.swiftCommand)
             return splash.triple
         }
     }
@@ -118,7 +118,7 @@ extension UpCommand: AsyncParsableCommand {
         setlinebuf(stdout)
 
         let unidoc: Unidoc.Client<HTTP.Client2> = try self.client
-        let triple: Symbol.Triple = try self.triple
+        let triple: Symbol.Triple = try await self.triple
         let cache: FilePath = "swiftpm"
 
         print("Connecting to \(self.host):\(self.port)...")

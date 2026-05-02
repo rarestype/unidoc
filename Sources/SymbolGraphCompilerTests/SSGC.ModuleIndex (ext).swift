@@ -31,7 +31,7 @@ extension SSGC.ModuleIndex {
         let subject: Symbol.Module = try #require(inputs.last, "No subject module!")
 
         /// this directory doesn’t actually exist, it is merely a placeholder
-        let root: FilePath.Directory = try #require(.current()) / "TestModules"
+        let root: FilePath.Directory = try .current / "TestModules"
         let base: Symbol.FileBase = .init(root.path.string)
 
         var symbolCache: SSGC.SymbolCache = .init(symbols: symbols)

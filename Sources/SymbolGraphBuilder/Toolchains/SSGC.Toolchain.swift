@@ -41,10 +41,10 @@ extension SSGC.Toolchain {
         paths: Paths = .init(swiftPM: nil, usr: try? Environment["SWIFT_INSTALLATION"]),
         recoverFromAppleBugs: Bool = true,
         pretty: Bool = false
-    ) throws -> Self {
+    ) async throws -> Self {
         .init(
             appleSDK: appleSDK,
-            splash: try .init(running: paths.swiftCommand),
+            splash: try await .init(running: paths.swiftCommand),
             paths: paths,
             recoverFromAppleBugs: recoverFromAppleBugs,
             pretty: pretty
@@ -198,7 +198,7 @@ extension SSGC.Toolchain {
         cache: FilePath.Directory
     ) throws -> FilePath.Directory {
         let cached: FilePath.Directory = cache / "swift@\(self.splash.swift.version)"
-        if  cached.exists() {
+        if  try cached.exists {
             return cached
         }
 

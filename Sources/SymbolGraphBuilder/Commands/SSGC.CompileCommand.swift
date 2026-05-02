@@ -99,13 +99,13 @@ extension SSGC {
     }
 }
 extension SSGC.CompileCommand {
-    public func launch() throws {
+    public func launch() async throws {
         guard
         let workspacePath: FilePath.Directory = self.workspacePath else {
             //  It would never make sense to write to a FIFO that we created ourselves, because
             //  no one else could be expected to read from it.
             let workspace: SSGC.Workspace = try .create(at: self.workspaceName)
-            try self.launch(workspace: workspace, status: nil)
+            try await self.launch(workspace: workspace, status: nil)
             return
         }
 
@@ -114,14 +114,14 @@ extension SSGC.CompileCommand {
         if  let file: Int32 = self.status {
             status = .init(file: .init(rawValue: file))
         } else {
-            let workspace: SSGC.Workspace = .init(location: workspacePath)
-            try self.launch(workspace: workspace, status: nil)
+            let workspace: SSGC.Workspace = try .init(location: workspacePath)
+            try await self.launch(workspace: workspace, status: nil)
             return
         }
 
-        let workspace: SSGC.Workspace = .init(location: workspacePath)
+        let workspace: SSGC.Workspace = try .init(location: workspacePath)
         do {
-            try self.launch(workspace: workspace, status: status)
+            try await self.launch(workspace: workspace, status: status)
         } catch let error as SSGC.ManifestDumpError {
             try status.send(
                 error.leaf
@@ -146,22 +146,22 @@ extension SSGC.CompileCommand {
         }
     }
 
-    private func launch(workspace: SSGC.Workspace, status: SSGC.StatusStream?) throws {
+    private func launch(workspace: SSGC.Workspace, status: SSGC.StatusStream?) async throws {
         let validation: SSGC.ValidationBehavior = self.build.ci ?? .ignoreErrors
         if  let path: FilePath = self.build.outputLog {
-            try path.open(
+            try await path.open(
                 .writeOnly,
                 permissions: (.rw, .r, .r),
                 options: [.create, .truncate]
             ) {
-                try self.launch(
+                try await self.launch(
                     workspace: workspace,
                     status: status,
                     logger: .init(validation: validation, file: $0)
                 )
             }
         } else {
-            try self.launch(
+            try await self.launch(
                 workspace: workspace,
                 status: status,
                 logger: .init(validation: validation, file: nil)
@@ -173,8 +173,8 @@ extension SSGC.CompileCommand {
         workspace: SSGC.Workspace,
         status: SSGC.StatusStream?,
         logger: SSGC.Logger
-    ) throws {
-        let toolchain: SSGC.Toolchain = try self.build.toolchain
+    ) async throws {
+        let toolchain: SSGC.Toolchain = try await self.build.toolchain
         let object: SymbolGraphObject<Void>
 
         if  let project: String = self.build.projectName,
@@ -190,7 +190,7 @@ extension SSGC.CompileCommand {
                 }
             }
 
-            let package: SSGC.PackageBuild = try .remote(
+            let package: SSGC.PackageBuild = try await .remote(
                 project: symbol,
                 from: repo,
                 at: ref,
@@ -250,7 +250,7 @@ extension SSGC.CompileCommand {
                 throw SSGC.ProjectPathRequiredError.init()
             }
 
-            let package: SSGC.PackageBuild = .local(
+            let package: SSGC.PackageBuild = try .local(
                 project: computedPath,
                 using: ".build.ssgc",
                 as: self.build.projectType,

@@ -67,18 +67,18 @@ extension SSGC.SlaveCommand: AsyncParsableCommand {
         shouldDisplay: false
     )
 
-    public func run() throws {
+    public func run() async throws {
         let status: SSGC.StatusStream
 
         if  let file: Int32 = self.status {
             status = .init(file: .init(rawValue: file))
         } else {
-            try self.launch(status: nil)
+            try await self.launch(status: nil)
             return
         }
 
         do {
-            try self.launch(status: status)
+            try await self.launch(status: status)
         } catch let error as SSGC.ManifestDumpError {
             try status.send(
                 error.leaf
@@ -103,25 +103,31 @@ extension SSGC.SlaveCommand: AsyncParsableCommand {
         }
     }
 
-    private func launch(status: SSGC.StatusStream?) throws {
+    private func launch(status: SSGC.StatusStream?) async throws {
         let validation: SSGC.ValidationBehavior = self.build.ci ?? .ignoreErrors
 
         guard
         let path: FilePath = self.build.outputLog else {
-            try self.launch(status: status, logger: .init(validation: validation, file: nil))
+            try await self.launch(
+                status: status,
+                logger: .init(validation: validation, file: nil)
+            )
             return
         }
 
-        try path.open(
+        try await path.open(
             .writeOnly,
             permissions: (.rw, .r, .r),
             options: [.create, .truncate]
         ) {
-            try self.launch(status: status, logger: .init(validation: validation, file: $0))
+            try await self.launch(
+                status: status,
+                logger: .init(validation: validation, file: $0)
+            )
         }
     }
 
-    private func launch(status: SSGC.StatusStream?, logger: SSGC.Logger) throws {
+    private func launch(status: SSGC.StatusStream?, logger: SSGC.Logger) async throws {
         let workspace: SSGC.Workspace = try .create(at: self.workspace)
 
         let projectName: String
@@ -141,7 +147,7 @@ extension SSGC.SlaveCommand: AsyncParsableCommand {
 
         let object: SymbolGraphObject<Void>
         do {
-            let toolchain: SSGC.Toolchain = try self.build.toolchain
+            let toolchain: SSGC.Toolchain = try await self.build.toolchain
             let symbol: Symbol.Package = .init(projectName)
 
             defer {
@@ -152,7 +158,7 @@ extension SSGC.SlaveCommand: AsyncParsableCommand {
                 }
             }
 
-            let package: SSGC.PackageBuild = try .remote(
+            let package: SSGC.PackageBuild = try await .remote(
                 project: symbol,
                 from: self.repo,
                 at: self.ref,
