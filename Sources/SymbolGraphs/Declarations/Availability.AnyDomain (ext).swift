@@ -2,21 +2,12 @@ import Availability
 import BSON
 internal import Bijection
 
-extension Availability {
+extension Availability.AnyDomain: BSON.Keyspace {
     /// Represents an ``Availability.AnyDomain`` in the BSON ABI. This has a
     /// single-character raw value, for storage efficiency, and is not intended
     /// to be human-readable.
-    @frozen public struct CodingKey: BSON.Keyspace {
-        public let domain: AnyDomain
-
-        @inlinable public init(_ domain: AnyDomain) {
-            self.domain = domain
-        }
-    }
-}
-extension Availability.CodingKey: RawRepresentable {
     @Bijection(label: "rawValue") @inlinable public var rawValue: String {
-        switch self.domain {
+        switch self {
         case .agnostic(.swift): "s"
         case .agnostic(.swiftPM): "p"
         case .platform(.Android): "a"
