@@ -64,6 +64,7 @@ let package: Package = .init(
     ],
     dependencies: [
         .package(url: "https://github.com/ordo-one/dollup", from: "1.0.1"),
+        .package(url: "https://github.com/ordo-one/lexic", from: "1.7.0"),
 
         .package(url: "https://github.com/rarestype/gram", from: "2.0.0"),
         .package(url: "https://github.com/rarestype/h", from: "1.0.1"),
@@ -392,6 +393,7 @@ let package: Package = .init(
                 .target(name: "Signatures"),
                 .target(name: "Symbols"),
 
+                .product(name: "Bijection", package: "lexic"),
                 .product(name: "BSON", package: "swift-bson"),
                 .product(name: "SHA1", package: "h"),
             ],
