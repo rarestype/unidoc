@@ -53,7 +53,7 @@ jobs:
             -   name: 💖 Install Swift 💖
                 uses: rarestype/swift-install-action@v1
                 with:
-                    swift-release: 6.3.3-RELEASE
+                    swift-release: 6.3.2-RELEASE
 
             -   name: 💖 Build release 💖
                 run: |
@@ -96,7 +96,7 @@ jobs:
             -   name: 💖 Install Swift 💖
                 uses: rarestype/swift-install-action@v1
                 with:
-                    swift-release: 6.3.3-RELEASE
+                    swift-release: 6.3.2-RELEASE
 
             -   name: 💖 Build for deployment (dry run) 💖
                 run: Scripts/Build --no-jemalloc
@@ -116,7 +116,7 @@ jobs:
             -   name: 💖 Install Swift 💖
                 uses: rarestype/swift-install-action@v1
                 with:
-                    swift-release: 6.3.3-RELEASE
+                    swift-release: 6.3.2-RELEASE
 
             -   name: 💖 Check format 💖
                 run: Scripts/Format
