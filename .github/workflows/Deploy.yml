@@ -18,7 +18,7 @@ on:
 
 jobs:
     macOS:
-        runs-on: macos-26
+        runs-on: xcode-27
         env:
             DEPLOY_VERSION: ${{ inputs.version }}
         steps:
@@ -32,8 +32,8 @@ jobs:
             -   name: 💝 Checkout repository 💝
                 uses: actions/checkout@v6
 
-            -   name: 💝 Select Xcode 26.6 💝
-                run: sudo xcode-select -s /Applications/Xcode_26.6.app/Contents/Developer
+            -   name: 💝 Select Xcode 27.1 💝
+                run: sudo xcode-select -s /Applications/Xcode_27.1.app/Contents/Developer
 
             -   name: 💝 Build products 💝
                 env:
@@ -58,15 +58,17 @@ jobs:
     Linux:
         strategy:
             matrix:
-                arch:
-                    -   id: aarch64
-                        runner: ubuntu-24.04-arm
+                platform:
+                    -   name: "Ubuntu 24.04 (aarch64)"
+                        arch: aarch64
+                        runs-on: ubuntu-24.04-arm
 
-                    -   id: x86_64
-                        runner: ubuntu-24.04
+                    -   name: "Ubuntu 24.04 (x86_64)"
+                        arch: x86_64
+                        runs-on: ubuntu-24.04
 
-        runs-on: ${{ matrix.arch.runner }}
-        name: "Ubuntu 24.04 (${{ matrix.arch.id }})"
+        runs-on: ${{ matrix.platform['runs-on'] }}
+        name: ${{ matrix.platform.name }}
         env:
             DEPLOY_VERSION: ${{ inputs.version }}
         steps:
@@ -83,7 +85,7 @@ jobs:
             -   name: 💝 Install Swift 💝
                 uses: rarestype/swift-install-action@v1
                 with:
-                    swift-release: 6.3.3-RELEASE
+                    swift-release: 6.4.1-RELEASE
 
             -   name: 💝 Build Unidoc 💝
                 run: |
@@ -93,13 +95,13 @@ jobs:
             -   name: 💝 Upload products 💝
                 run: Scripts/Deploy unidoc.tar.gz
                 env:
-                    DEPLOY_PLATFORM: "${{ github.job }}-${{ matrix.arch.id }}"
+                    DEPLOY_PLATFORM: "${{ github.job }}-${{ matrix.platform.arch }}"
 
             -   name: 💝 Update badge 💝
                 uses: rarestype/rarestbadge@v1
                 if: always()
                 with:
-                    badge: SemanticRelease/${{ github.job }}-${{ matrix.arch.id }}
+                    badge: SemanticRelease/${{ github.job }}-${{ matrix.platform.arch }}
                     title: Release
 
 
@@ -123,7 +125,7 @@ jobs:
             -   name: 💝 Install Swift 💝
                 uses: rarestype/swift-install-action@v1
                 with:
-                    swift-release: 6.3.3-RELEASE
+                    swift-release: 6.4.1-RELEASE
 
             -   name: 💝 Install jemalloc 💝
                 run: sudo apt install libjemalloc-dev
