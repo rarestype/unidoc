@@ -48,7 +48,7 @@ extension SSGC.PackageBuildDirectory {
         if (try? products.exists) == true {
             for case .success(let component) in products {
                 let name: String = "\(component)"
-                if  name.hasPrefix("\(self.configuration)-") {
+                if  name.lowercased().hasPrefix("\(self.configuration)") {
                     paths.append(products / component)
                 }
             }
@@ -58,7 +58,7 @@ extension SSGC.PackageBuildDirectory {
         if (try? intermediates.exists) == true {
             for case .success(let component) in intermediates {
                 let name: String = "\(component)"
-                if  name.hasPrefix("GeneratedModuleMaps-") {
+                if  name.hasPrefix("GeneratedModuleMaps") {
                     paths.append(intermediates / component)
                 }
             }
@@ -82,10 +82,39 @@ extension SSGC.PackageBuildDirectory {
         if (try? intermediates.exists) == true {
             for case .success(let component) in intermediates {
                 let name: String = "\(component)"
-                if  name.hasPrefix("GeneratedModuleMaps-") {
+                if  name.hasPrefix("GeneratedModuleMaps") {
                     let map: FilePath = intermediates / component / "\(target).modulemap"
                     if (try? map.exists) == true {
                         return map
+                    }
+                } else if name.hasSuffix(".build") {
+                    let pkgDir: FilePath.Directory = intermediates / component
+                    for case .success(let config) in pkgDir {
+                        let configName: String = "\(config)"
+                        if  configName.lowercased().hasPrefix("\(self.configuration)") {
+                            let targetDir: FilePath.Directory = pkgDir / config / """
+                            \(target)-t.build
+                            """
+                            let map: FilePath = targetDir / "\(target).modulemap"
+                            if (try? map.exists) == true {
+                                return map
+                            }
+                            let moduleMap: FilePath = targetDir / "module.modulemap"
+                            if (try? moduleMap.exists) == true {
+                                return moduleMap
+                            }
+                            let targetDirLegacy: FilePath.Directory = pkgDir / config / """
+                            \(target).build
+                            """
+                            let mapLegacy: FilePath = targetDirLegacy / "\(target).modulemap"
+                            if (try? mapLegacy.exists) == true {
+                                return mapLegacy
+                            }
+                            let moduleMapLegacy: FilePath = targetDirLegacy / "module.modulemap"
+                            if (try? moduleMapLegacy.exists) == true {
+                                return moduleMapLegacy
+                            }
+                        }
                     }
                 }
             }
@@ -94,6 +123,11 @@ extension SSGC.PackageBuildDirectory {
         let native: FilePath = self.build(target: target) / "module.modulemap"
         if (try? native.exists) == true {
             return native
+        }
+
+        let nativeTarget: FilePath = self.build(target: target) / "\(target).modulemap"
+        if (try? nativeTarget.exists) == true {
+            return nativeTarget
         }
 
         return nil

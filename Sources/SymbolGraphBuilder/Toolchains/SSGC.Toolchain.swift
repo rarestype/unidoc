@@ -183,7 +183,9 @@ extension SSGC.Toolchain {
         }
 
         #if os(Linux)
-        let toolchainUsr: FilePath.Directory = self.paths.usr ?? "/usr"
+        let toolchainUsr: FilePath.Directory = self.paths.usr
+            ?? (try? Environment["SWIFT_INSTALLATION"])
+            ?? "/usr"
         let toolchainSwiftLib: FilePath.Directory = toolchainUsr / "lib" / "swift"
         if (try? toolchainSwiftLib.exists) == true {
             arguments.append("-Xcxx")
