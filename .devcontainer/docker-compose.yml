@@ -16,7 +16,7 @@ services:
       - ../.mongod:/data/db
     command: mongod --config /etc/mongod.conf
   app:
-    image: swift:6.3
+    image: swift:6.4
     networks:
       - unidoc-devcontainer
     user: vscode

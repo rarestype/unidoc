@@ -6,10 +6,10 @@ We track ABI versions with a ``MinorVersion`` tuple. Additive changes increment 
 
 Please check if you need to update the version tuple in <file:ABI.swift> when changing any of the following modules:
 
--   ``MarkdownABI``
--   ``MarkdownSemantics``
--   ``MarkdownAST``
--   ``SymbolGraphs``
--   ``SymbolGraphCompiler``
--   ``SymbolGraphLinker``
--   ``SymbolGraphParts``
+-   `MarkdownABI`
+-   `MarkdownSemantics`
+-   `MarkdownAST`
+-   `SymbolGraphs`
+-   `SymbolGraphCompiler`
+-   `SymbolGraphLinker`
+-   `SymbolGraphParts`
