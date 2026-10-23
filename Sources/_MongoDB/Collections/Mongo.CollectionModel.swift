@@ -258,12 +258,14 @@ extension Mongo.CollectionModel
 extension Mongo.CollectionModel {
     public typealias Insertable = BSONDocumentEncodable & Identifiable<Element.ID>
 
-    @inlinable func insert(some elements: some Sequence<some Insertable>) async throws {
+    @inlinable func insert<Model>(
+        some elements: some Sequence<Model>
+    ) async throws where Model: Insertable {
         var count: Int = 0
         let insert: Mongo.Insert = .init(Self.name, writeConcern: .majority) {
             $0[.ordered] = false
         } documents: {
-            for element: some Insertable in elements {
+            for element: Model in elements {
                 $0.append(element)
                 count += 1
             }
@@ -293,12 +295,12 @@ extension Mongo.CollectionModel {
     }
 }
 extension Mongo.CollectionModel {
-    @inlinable func upsert(
-        some elements: some Sequence<some Insertable>
-    ) async throws -> Mongo.Updates<Element.ID> {
+    @inlinable func upsert<Model>(
+        some elements: some Sequence<Model>
+    ) async throws -> Mongo.Updates<Element.ID> where Model: Insertable {
         var count: Int = 0
         let update: Mongo.Update<Mongo.One, Element.ID> = .init(Self.name) {
-            for element: some BSONDocumentEncodable & Identifiable<Element.ID> in elements {
+            for element: Model in elements {
                 $0.upsert(element)
                 count += 1
             }
@@ -536,12 +538,12 @@ extension Mongo.CollectionModel where Element: BSONDecodable, Element.ID: BSONEn
     }
 }
 extension Mongo.CollectionModel {
-    @inlinable func update(
-        some elements: some Sequence<some Insertable>
-    ) async throws -> Mongo.Updates<Element.ID> {
-        let response: Mongo.UpdateResponse<Element.ID> = try await session.run(
+    @inlinable func update<Model>(
+        some elements: some Sequence<Model>
+    ) async throws -> Mongo.Updates<Element.ID> where Model: Insertable {
+        let response: Mongo.UpdateResponse<Element.ID> = try await self.session.run(
             command: Mongo.Update<Mongo.One, Element.ID>.init(Self.name) {
-                for element: some Insertable in elements {
+                for element: Model in elements {
                     $0.replace(element)
                 }
             },

@@ -182,6 +182,20 @@ extension SSGC.Toolchain {
             arguments.append(flag)
         }
 
+        #if os(Linux)
+        let toolchainUsr: FilePath.Directory = self.paths.usr ?? "/usr"
+        let toolchainSwiftLib: FilePath.Directory = toolchainUsr / "lib" / "swift"
+        if (try? toolchainSwiftLib.exists) == true {
+            arguments.append("-Xcxx")
+            arguments.append("-I\(toolchainSwiftLib)")
+            let blockLib: FilePath.Directory = toolchainSwiftLib / "Block"
+            if (try? blockLib.exists) == true {
+                arguments.append("-Xcxx")
+                arguments.append("-I\(blockLib)")
+            }
+        }
+        #endif
+
         try SystemProcess.init(
             command: self.paths.swiftCommand,
             arguments: arguments,

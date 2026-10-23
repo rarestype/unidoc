@@ -12,10 +12,17 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+SWIFT_DIR="${SWIFT_INSTALLATION:-$(dirname $(dirname $(which swift)))}"
+CXX_FLAGS=""
+if [[ "$(uname -s)" == "Linux" && -d "${SWIFT_DIR}/lib/swift" ]]; then
+    CXX_FLAGS="-Xcxx -I${SWIFT_DIR}/lib/swift -Xcxx -I${SWIFT_DIR}/lib/swift/Block"
+fi
+
 for product in unidoc unidoc-linkerd unidocd; do
-    UNIDOC_ENABLE_INDEXSTORE=1 "${SWIFT_INSTALLATION}/bin/swift" build \
+    UNIDOC_ENABLE_INDEXSTORE=1 "${SWIFT_DIR}/bin/swift" build \
         --product "$product" \
         --configuration release \
         --static-swift-stdlib \
+        $CXX_FLAGS \
         $LINKER_FLAGS
 done

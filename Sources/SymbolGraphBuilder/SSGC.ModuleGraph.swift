@@ -270,7 +270,7 @@ extension SSGC.ModuleGraph {
             return plan.reduce(
                 into: .init(
                     moduleName: $1.layout.module.id,
-                    includePaths: scratch.map { [$0.modules] } ?? [],
+                    includePaths: scratch?.modules ?? [],
                     minimumAccessLevel: minimumAccessLevel,
                     emitExtensionBlockSymbols: emitExtensionBlockSymbols,
                     includeInterfaceSymbols: includeInterfaceSymbols,
