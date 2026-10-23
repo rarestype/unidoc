@@ -94,7 +94,7 @@ extension SSGC.BuildOptions {
                 appleSDK: self.appleSDK,
                 paths: .init(
                     swiftPM: self.swiftCache,
-                    usr: self.swiftTools ?? (try? Environment["SWIFT_INSTALLATION"])
+                    usr: self.swiftTools
                 ),
                 recoverFromAppleBugs: true, // self.recoverFromAppleBugs,
                 pretty: self.pretty

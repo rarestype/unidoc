@@ -22,36 +22,28 @@ for output in SymbolGraphs Determinism; do
 done
 
 if [[ -d TestModules/.build/debug/Modules ]]; then
-    for file in TestModules/.build/debug/Modules/*.swiftmodule; do
-        swift symbolgraph-extract \
-            -target x86_64-unknown-linux-gnu \
-            -minimum-access-level internal \
-            -output-dir TestModules/SymbolGraphs \
-            -skip-inherited-docs \
-            -emit-extension-block-symbols \
-            -include-spi-symbols \
-            -pretty-print \
-            -module-name $(basename "$file" .swiftmodule) \
-            -experimental-allowed-reexported-modules=ACL \
-            -I TestModules/.build/debug/Modules
-    done
+    mapfile -t files < <(ls TestModules/.build/debug/Modules/*.swiftmodule)
+    includes=()
 else
-    mapfile -t files < <(find TestModules/.build/out/Intermediates.noindex -name "*.swiftmodule" -path "*/Modules/*")
-    for file in "${files[@]}"; do
-        swift symbolgraph-extract \
-            -target x86_64-unknown-linux-gnu \
-            -minimum-access-level internal \
-            -output-dir TestModules/SymbolGraphs \
-            -skip-inherited-docs \
-            -emit-extension-block-symbols \
-            -include-spi-symbols \
-            -pretty-print \
-            -module-name $(basename "$file" .swiftmodule) \
-            -experimental-allowed-reexported-modules=ACL \
-            -I $(dirname "$file") \
-            -I TestModules/.build/debug
-    done
+    mapfile -t files < <(find TestModules/.build/out/Intermediates.noindex \
+        -name "*.swiftmodule" -path "*/Modules/*")
+    includes=("-I" "TestModules/.build/debug")
 fi
+
+for file in "${files[@]}"; do
+    swift symbolgraph-extract \
+        -target x86_64-unknown-linux-gnu \
+        -minimum-access-level internal \
+        -output-dir TestModules/SymbolGraphs \
+        -skip-inherited-docs \
+        -emit-extension-block-symbols \
+        -include-spi-symbols \
+        -pretty-print \
+        -module-name $(basename "$file" .swiftmodule) \
+        -experimental-allowed-reexported-modules=ACL \
+        -I $(dirname "$file") \
+        "${includes[@]}"
+done
 
 if ! command -v ssgc > /dev/null; then
     echo 'no ssgc command found, aborting'

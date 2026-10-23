@@ -118,12 +118,19 @@ jobs:
             -   name: 💖 Build 💖
                 run: |
                     swift --version
-                    SWIFT_DIR="${SWIFT_INSTALLATION:-$(dirname $(dirname $(which swift)))}"
+                    CXX_FLAGS=()
+                    if [[ -n "${CPLUS_INCLUDE_PATH:-}" ]]; then
+                        IFS=':' read -ra DIRS <<< "$CPLUS_INCLUDE_PATH"
+                        for dir in "${DIRS[@]}"; do
+                            if [[ -n "$dir" ]]; then
+                                CXX_FLAGS+=("-Xcxx" "-I$dir")
+                            fi
+                        done
+                    fi
                     swift build -c release \
                         --build-tests \
                         --explicit-target-dependency-import-check=warn \
-                        -Xcxx -I"${SWIFT_DIR}/lib/swift" \
-                        -Xcxx -I"${SWIFT_DIR}/lib/swift/Block"
+                        "${CXX_FLAGS[@]}"
 
             -   name: 💖 Build test packages 💖
                 run: |

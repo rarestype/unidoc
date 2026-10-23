@@ -4,6 +4,11 @@ import SystemIO
 extension SSGC {
     /// An SPM build directory. It is usually, but not always, named `.build`.
     struct PackageBuildDirectory {
+        enum Layout {
+            case native
+            case swiftbuild
+        }
+
         let configuration: PackageBuildConfiguration
         let location: FilePath.Directory
 
@@ -20,121 +25,124 @@ extension SSGC {
         }
     }
 }
+
 extension SSGC.PackageBuildDirectory {
-    var index: FilePath.Directory {
-        self.location / "\(self.configuration)" / "index"
+    var layout: Layout {
+        let flag: FilePath = self.location / ".buildSystem_\(self.configuration)"
+        if case true? = try? flag.exists,
+            let text: String = try? flag.readLine(),
+                text == "swiftbuild" {
+            return .swiftbuild
+        }
+        if case true? = try? (self.location / "out").exists {
+            return .swiftbuild
+        }
+        return .native
     }
 
     var indexStore: FilePath.Directory {
-        let swiftBuild: FilePath.Directory = self.location / "out"
-        if (try? (swiftBuild / "v5").exists) == true {
-            return swiftBuild
+        switch self.layout {
+        case .swiftbuild:
+            self.location / "out"
+        case .native:
+            self.location / "\(self.configuration)" / "index" / "store"
         }
-        return self.location / "\(self.configuration)" / "index" / "store"
     }
 
     var indexDatabase: FilePath.Directory {
-        let swiftBuild: FilePath.Directory = self.location / "out" / "db"
-        if (try? (self.location / "out" / "v5").exists) == true {
-            return swiftBuild
+        switch self.layout {
+        case .swiftbuild:
+            self.location / "out" / "db"
+        case .native:
+            self.location / "\(self.configuration)" / "index" / "db"
         }
-        return self.location / "\(self.configuration)" / "index" / "db"
     }
 
     var modules: [FilePath.Directory] {
-        var paths: [FilePath.Directory] = []
-
-        let products: FilePath.Directory = self.location / "out" / "Products"
-        if (try? products.exists) == true {
-            for case .success(let component) in products {
-                let name: String = "\(component)"
-                if  name.lowercased().hasPrefix("\(self.configuration)") {
-                    paths.append(products / component)
-                }
+        switch self.layout {
+        case .native:
+            let configuration: FilePath.Directory = self.location / "\(self.configuration)"
+            let modules: FilePath.Directory = configuration / "Modules"
+            if case true? = try? modules.exists {
+                return [modules]
             }
-        }
+            return [configuration]
 
-        let intermediates: FilePath.Directory = self.location / "out" / "Intermediates.noindex"
-        if (try? intermediates.exists) == true {
-            for case .success(let component) in intermediates {
-                let name: String = "\(component)"
-                if  name.hasPrefix("GeneratedModuleMaps") {
-                    paths.append(intermediates / component)
-                }
-            }
-        }
+        case .swiftbuild:
+            let configuration: FilePath.Directory = self.location / "\(self.configuration)"
+            var paths: [FilePath.Directory] = [configuration]
 
-        let native: FilePath.Directory = self.location / "\(self.configuration)" / "Modules"
-        if (try? native.exists) == true {
-            paths.append(native)
-        }
-
-        let config: FilePath.Directory = self.location / "\(self.configuration)"
-        if (try? config.exists) == true, !paths.contains(config) {
-            paths.append(config)
-        }
-
-        return paths
-    }
-
-    func modulemap(target: String) -> FilePath? {
-        let intermediates: FilePath.Directory = self.location / "out" / "Intermediates.noindex"
-        if (try? intermediates.exists) == true {
-            for case .success(let component) in intermediates {
-                let name: String = "\(component)"
-                if  name.hasPrefix("GeneratedModuleMaps") {
-                    let map: FilePath = intermediates / component / "\(target).modulemap"
-                    if (try? map.exists) == true {
-                        return map
+            let out: FilePath.Directory = self.location / "out"
+            let intermediates: FilePath.Directory = out / "Intermediates.noindex"
+            if case true? = try? intermediates.exists {
+                for case .success(let package) in intermediates {
+                    guard "\(package)".hasSuffix(".build") else {
+                        continue
                     }
-                } else if name.hasSuffix(".build") {
-                    let pkgDir: FilePath.Directory = intermediates / component
-                    for case .success(let config) in pkgDir {
-                        let configName: String = "\(config)"
-                        if  configName.lowercased().hasPrefix("\(self.configuration)") {
-                            let targetDir: FilePath.Directory = pkgDir / config / """
-                            \(target)-t.build
-                            """
-                            let map: FilePath = targetDir / "\(target).modulemap"
-                            if (try? map.exists) == true {
-                                return map
+                    let packageDirectory: FilePath.Directory = intermediates / package
+                    for case .success(let configuration) in packageDirectory {
+                        guard "\(configuration)".lowercased().hasPrefix(
+                            "\(self.configuration)"
+                        ) else {
+                            continue
+                        }
+                        let configurationDirectory: FilePath.Directory =
+                        packageDirectory / configuration
+                        for case .success(let target) in configurationDirectory {
+                            let targetDirectory: FilePath.Directory =
+                            configurationDirectory / target
+                            let objectsNormal: FilePath.Directory =
+                            targetDirectory / "Objects-normal"
+                            guard case true? = try? objectsNormal.exists else {
+                                continue
                             }
-                            let moduleMap: FilePath = targetDir / "module.modulemap"
-                            if (try? moduleMap.exists) == true {
-                                return moduleMap
-                            }
-                            let targetDirLegacy: FilePath.Directory = pkgDir / config / """
-                            \(target).build
-                            """
-                            let mapLegacy: FilePath = targetDirLegacy / "\(target).modulemap"
-                            if (try? mapLegacy.exists) == true {
-                                return mapLegacy
-                            }
-                            let moduleMapLegacy: FilePath = targetDirLegacy / "module.modulemap"
-                            if (try? moduleMapLegacy.exists) == true {
-                                return moduleMapLegacy
+                            for case .success(let architecture) in objectsNormal {
+                                let architectureDirectory: FilePath.Directory =
+                                objectsNormal / architecture
+                                let modules: FilePath.Directory =
+                                architectureDirectory / "Modules"
+                                if case true? = try? modules.exists {
+                                    paths.append(modules)
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        let native: FilePath = self.build(target: target) / "module.modulemap"
-        if (try? native.exists) == true {
-            return native
+            return paths
         }
-
-        let nativeTarget: FilePath = self.build(target: target) / "\(target).modulemap"
-        if (try? nativeTarget.exists) == true {
-            return nativeTarget
-        }
-
-        return nil
     }
 
-    /// This takes an unmangled target name, not a c99 name.
-    private func build(target: String) -> FilePath.Directory {
-        self.location / "\(self.configuration)" / "\(target).build"
+    func modulemap(target: String) -> FilePath? {
+        switch self.layout {
+        case .swiftbuild:
+            let out: FilePath.Directory = self.location / "out"
+            let intermediates: FilePath.Directory = out / "Intermediates.noindex"
+            if case true? = try? intermediates.exists {
+                for case .success(let component) in intermediates {
+                    if "\(component)".hasPrefix("GeneratedModuleMaps") {
+                        let map: FilePath = intermediates / component / "\(target).modulemap"
+                        if case true? = try? map.exists {
+                            return map
+                        }
+                    }
+                }
+            }
+            return nil
+
+        case .native:
+            let configuration: FilePath.Directory = self.location / "\(self.configuration)"
+            let targetDirectory: FilePath.Directory = configuration / "\(target).build"
+            let moduleMap: FilePath = targetDirectory / "module.modulemap"
+            if case true? = try? moduleMap.exists {
+                return moduleMap
+            }
+            let namedMap: FilePath = targetDirectory / "\(target).modulemap"
+            if case true? = try? namedMap.exists {
+                return namedMap
+            }
+            return nil
+        }
     }
 }
