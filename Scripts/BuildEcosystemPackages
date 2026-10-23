@@ -20,10 +20,10 @@ ssgc slave https://github.com/apple/swift-nio-ssl.git 2.36.0 \
 ssgc slave https://github.com/apple/swift-async-dns-resolver.git 0.1.2 \
     -o TestPackages/swift-async-dns-resolver.bson
 
-ssgc slave https://github.com/swiftlang/swift-syntax.git 603.0.0 \
+ssgc slave https://github.com/swiftlang/swift-syntax.git 604.0.0 \
     -o TestPackages/swift-syntax.bson
 
-ssgc slave https://github.com/swiftlang/indexstore-db.git swift-6.3-RELEASE \
+ssgc slave https://github.com/swiftlang/indexstore-db.git swift-6.4.1-RELEASE \
     -o TestPackages/indexstore-db.bson
 
 ssgc slave https://github.com/swiftlang/swift-book.git swift-5.10-fcs \

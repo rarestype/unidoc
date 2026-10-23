@@ -182,6 +182,14 @@ extension SSGC.Toolchain {
             arguments.append(flag)
         }
 
+        if let cplusIncludePath: String = Environment["CPLUS_INCLUDE_PATH"] {
+            for directory: Substring in cplusIncludePath.split(separator: ":")
+                where !directory.isEmpty {
+                arguments.append("-Xcxx")
+                arguments.append("-I\(directory)")
+            }
+        }
+
         try SystemProcess.init(
             command: self.paths.swiftCommand,
             arguments: arguments,

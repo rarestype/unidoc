@@ -12,10 +12,21 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+CXX_FLAGS=()
+if [[ -n "${CPLUS_INCLUDE_PATH:-}" ]]; then
+    IFS=':' read -ra DIRS <<< "$CPLUS_INCLUDE_PATH"
+    for dir in "${DIRS[@]}"; do
+        if [[ -n "$dir" ]]; then
+            CXX_FLAGS+=("-Xcxx" "-I$dir")
+        fi
+    done
+fi
+
 for product in unidoc unidoc-linkerd unidocd; do
     UNIDOC_ENABLE_INDEXSTORE=1 "${SWIFT_INSTALLATION}/bin/swift" build \
         --product "$product" \
         --configuration release \
         --static-swift-stdlib \
+        "${CXX_FLAGS[@]}" \
         $LINKER_FLAGS
 done

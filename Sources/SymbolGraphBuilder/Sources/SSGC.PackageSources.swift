@@ -45,10 +45,9 @@ extension SSGC.PackageSources: SSGC.DocumentationSources {
         #if canImport(IndexStoreDB)
 
         let libIndexStore: IndexStoreLibrary = try swift.libIndexStore()
-        let indexPath: FilePath.Directory = self.scratch.index
         return try IndexStoreDB.init(
-            storePath: "\(indexPath)/store",
-            databasePath: "\(indexPath)/db",
+            storePath: "\(self.scratch.indexStore)",
+            databasePath: "\(self.scratch.indexDatabase)",
             library: libIndexStore,
             waitUntilDoneInitializing: true,
             readonly: false,
