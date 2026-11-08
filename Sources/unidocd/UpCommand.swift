@@ -143,10 +143,12 @@ extension UpCommand: AsyncParsableCommand {
                 }
 
                 if  let labels: Unidoc.BuildLabels {
-                    print("""
+                    print(
+                        """
                         Building package '\(labels.package)' at '\(labels.ref)' \
                         (\(labels.coordinate))
-                        """)
+                        """
+                    )
 
                     let toolchain: Unidoc.Toolchain = .init(usr: self.toolchain, sdk: self.sdk)
                     /// As this runs continuously, we should remove the build artifacts

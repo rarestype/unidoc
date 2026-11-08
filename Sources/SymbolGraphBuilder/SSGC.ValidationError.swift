@@ -1,6 +1,5 @@
 extension SSGC {
-    struct ValidationError: Error {
-    }
+    struct ValidationError: Error {}
 }
 extension SSGC.ValidationError: CustomStringConvertible {
     var description: String {

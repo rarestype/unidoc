@@ -1,4 +1,3 @@
 extension SSGC {
-    struct ProjectPathRequiredError: Error {
-    }
+    struct ProjectPathRequiredError: Error {}
 }

@@ -13,10 +13,8 @@ extension Unidoc {
         }
     }
 }
-extension Unidoc.BuildRequest: Equatable where Package: Equatable {
-}
-extension Unidoc.BuildRequest: Sendable where Package: Sendable {
-}
+extension Unidoc.BuildRequest: Equatable where Package: Equatable {}
+extension Unidoc.BuildRequest: Sendable where Package: Sendable {}
 extension Unidoc.BuildRequest<Unidoc.Package> {
     public init?(query: borrowing URI.Query) {
         var package: Unidoc.Package? = nil

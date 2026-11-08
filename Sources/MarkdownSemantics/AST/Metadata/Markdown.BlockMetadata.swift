@@ -13,6 +13,5 @@ extension Markdown {
     }
 }
 extension Markdown.BlockMetadata: Markdown.BlockDirectiveType {
-    func configure(option: Markdown.NeverOption, value _: Markdown.SourceString) {
-    }
+    func configure(option: Markdown.NeverOption, value _: Markdown.SourceString) {}
 }

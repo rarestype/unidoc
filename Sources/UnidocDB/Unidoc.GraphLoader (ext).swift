@@ -45,10 +45,12 @@ extension Unidoc.GraphLoader {
             $0[$1.id] = nil
         }
         for missing: Symbol.Package in missing.values.sorted() {
-            print("""
+            print(
+                """
                 warning: could not load pinned dependency '\(missing)' for \
                 snapshot '\(metadata.package.name)'
-                """)
+                """
+            )
         }
 
         return objects

@@ -24,5 +24,4 @@ extension JSON.StringRepresentation: LosslessStringConvertible, CustomStringConv
         self.value.description
     }
 }
-extension JSON.StringRepresentation: JSONStringDecodable, JSONStringEncodable {
-}
+extension JSON.StringRepresentation: JSONStringDecodable, JSONStringEncodable {}

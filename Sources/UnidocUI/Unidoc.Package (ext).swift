@@ -1,4 +1,3 @@
 import URI
 
-extension Unidoc.Package: URI.Path.ComponentConvertible {
-}
+extension Unidoc.Package: URI.Path.ComponentConvertible {}

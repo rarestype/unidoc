@@ -7,12 +7,9 @@
         self.nominal = nominal
     }
 }
-extension GenericType: Equatable where Scalar: Equatable {
-}
-extension GenericType: Hashable where Scalar: Hashable {
-}
-extension GenericType: Sendable where Scalar: Sendable {
-}
+extension GenericType: Equatable where Scalar: Equatable {}
+extension GenericType: Hashable where Scalar: Hashable {}
+extension GenericType: Sendable where Scalar: Sendable {}
 extension GenericType: Comparable where Scalar: Comparable {
     @inlinable public static func < (a: Self, b: Self) -> Bool {
         switch (a.nominal, b.nominal) {

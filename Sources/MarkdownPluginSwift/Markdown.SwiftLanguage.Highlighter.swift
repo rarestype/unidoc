@@ -5,8 +5,7 @@ import SwiftSyntax
 
 extension Markdown.SwiftLanguage {
     @frozen public struct Highlighter {
-        @inlinable public init() {
-        }
+        @inlinable public init() {}
     }
 }
 extension Markdown.SwiftLanguage.Highlighter: Markdown.CodeHighlighter {

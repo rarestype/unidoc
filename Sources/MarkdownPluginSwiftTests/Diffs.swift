@@ -34,7 +34,8 @@ import Testing
 
         let html: HTML = .init { $0 += layered.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             {
                 <span class='xk'>return</span> <span class='xs'>\"""</span>
                 <span class='xs'>Barbieland
@@ -43,6 +44,7 @@ import Testing
             </span>    <span class='xs'>Free</span>
             </ins>    <span class='xs'>\"""</span>
             }
-            """)
+            """
+        )
     }
 }

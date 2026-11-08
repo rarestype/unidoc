@@ -84,5 +84,4 @@ extension Unidoc.DB.Editions: Mongo.CollectionModel {
         ]
     }
 }
-extension Unidoc.DB.Editions: Mongo.RecodableModel {
-}
+extension Unidoc.DB.Editions: Mongo.RecodableModel {}

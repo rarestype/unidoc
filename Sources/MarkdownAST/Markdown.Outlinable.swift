@@ -12,9 +12,6 @@ extension Markdown.Outlinable {
         }
     }
 }
-extension Markdown.Outlinable: Equatable where InlineValue: Equatable {
-}
-extension Markdown.Outlinable: Hashable where InlineValue: Hashable {
-}
-extension Markdown.Outlinable: Sendable where InlineValue: Sendable {
-}
+extension Markdown.Outlinable: Equatable where InlineValue: Equatable {}
+extension Markdown.Outlinable: Hashable where InlineValue: Hashable {}
+extension Markdown.Outlinable: Sendable where InlineValue: Sendable {}

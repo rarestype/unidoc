@@ -4,8 +4,7 @@ import MongoDB
 extension Mongo {
     /// A recodable model is some database abstraction that supports migration to a new schema.
     public protocol RecodableModel: CollectionModel
-        where Element: BSONDocumentDecodable & BSONDocumentEncodable {
-    }
+        where Element: BSONDocumentDecodable & BSONDocumentEncodable {}
 }
 extension Mongo.RecodableModel {
     /// Decode and re-encode all documents in this collection using the specified master type.

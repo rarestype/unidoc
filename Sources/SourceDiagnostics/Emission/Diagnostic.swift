@@ -5,6 +5,5 @@ public protocol Diagnostic<Symbolicator> {
     func emit(details: inout DiagnosticOutput<Symbolicator>)
 }
 extension Diagnostic {
-    @inlinable public func emit(details: inout DiagnosticOutput<Symbolicator>) {
-    }
+    @inlinable public func emit(details: inout DiagnosticOutput<Symbolicator>) {}
 }

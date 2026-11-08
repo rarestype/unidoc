@@ -45,5 +45,4 @@ extension Unidoc.Census.Interface: RawRepresentable {
         }
     }
 }
-extension Unidoc.Census.Interface: BSON.Keyspace {
-}
+extension Unidoc.Census.Interface: BSON.Keyspace {}

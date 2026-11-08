@@ -57,9 +57,11 @@ extension Unidoc.UserIndexOperation {
 
             guard
             let web: Unidoc.UserSession.Web = secrets.web else {
-                return .forbidden("""
+                return .forbidden(
+                    """
                     It looks like you have somehow logged in as an anonymous user.\n
-                    """)
+                    """
+                )
             }
 
             let cookie: HTTP.CookieValue = .init("\(web)") {

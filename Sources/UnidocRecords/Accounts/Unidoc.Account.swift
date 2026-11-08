@@ -39,8 +39,7 @@ extension Unidoc.Account: RawRepresentable {
 
     @inlinable public var rawValue: Int64 { .init(bitPattern: self.bits) }
 }
-extension Unidoc.Account: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Account: BSONDecodable, BSONEncodable {}
 extension Unidoc.Account: CustomStringConvertible {
     @inlinable public var description: String { "\(self.bits)" }
 }

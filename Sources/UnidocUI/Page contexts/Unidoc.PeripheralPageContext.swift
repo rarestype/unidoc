@@ -1,6 +1,5 @@
 import UnidocRender
 
 extension Unidoc {
-    public final class PeripheralPageContext: IdentifiablePageContext<PeripheralVertices> {
-    }
+    public final class PeripheralPageContext: IdentifiablePageContext<PeripheralVertices> {}
 }

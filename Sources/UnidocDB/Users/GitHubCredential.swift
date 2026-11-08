@@ -10,10 +10,8 @@ struct GitHubCredential<Instant>: Sendable where Instant: Sendable {
         self.token = token
     }
 }
-extension GitHubCredential: Equatable where Instant: Equatable {
-}
-extension GitHubCredential: Hashable where Instant: Hashable {
-}
+extension GitHubCredential: Equatable where Instant: Equatable {}
+extension GitHubCredential: Hashable where Instant: Hashable {}
 extension GitHubCredential {
     enum CodingKey: String, Sendable {
         case expires = "E"

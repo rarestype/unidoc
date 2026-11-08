@@ -32,8 +32,7 @@ extension Markdown.Tutorial {
     }
 }
 extension Markdown.Tutorial.Steps: Markdown.BlockDirectiveType {
-    func configure(option: Markdown.NeverOption, value _: Markdown.SourceString) {
-    }
+    func configure(option: Markdown.NeverOption, value _: Markdown.SourceString) {}
 
     func append(_ element: Markdown.BlockElement) {
         if  case let step as Markdown.Tutorial.Step = element {

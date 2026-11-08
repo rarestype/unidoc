@@ -14,10 +14,12 @@ extension SSGC {
 
         init(configuration: PackageBuildConfiguration, location: FilePath.Directory) {
             guard location.path.isAbsolute else {
-                fatalError("""
+                fatalError(
+                    """
                     Package build directory must be an absolute path,
                     for IndexStoreDB compatibility!
-                    """)
+                    """
+                )
             }
 
             self.configuration = configuration

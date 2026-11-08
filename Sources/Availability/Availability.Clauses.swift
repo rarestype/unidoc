@@ -27,18 +27,15 @@ extension Availability {
 extension Availability.Clauses: Sendable
     where   Domain.Unavailability: Sendable,
     Domain.Deprecation: Sendable,
-    Domain.Bound: Sendable {
-}
+    Domain.Bound: Sendable {}
 extension Availability.Clauses: Equatable
     where   Domain.Unavailability: Equatable,
     Domain.Deprecation: Equatable,
-    Domain.Bound: Equatable {
-}
+    Domain.Bound: Equatable {}
 extension Availability.Clauses: Hashable
     where   Domain.Unavailability: Hashable,
     Domain.Deprecation: Hashable,
-    Domain.Bound: Hashable {
-}
+    Domain.Bound: Hashable {}
 extension Availability.Clauses {
     @inlinable public var isGenerallyRecommended: Bool {
         if  case nil = self.unavailable,

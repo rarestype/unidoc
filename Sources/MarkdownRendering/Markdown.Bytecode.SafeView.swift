@@ -11,7 +11,5 @@ extension Markdown.Bytecode {
         }
     }
 }
-extension Markdown.Bytecode.SafeView: HTML.OutputStreamableMarkdown {
-}
-extension Markdown.Bytecode.SafeView: TextOutputStreamableMarkdown {
-}
+extension Markdown.Bytecode.SafeView: HTML.OutputStreamableMarkdown {}
+extension Markdown.Bytecode.SafeView: TextOutputStreamableMarkdown {}

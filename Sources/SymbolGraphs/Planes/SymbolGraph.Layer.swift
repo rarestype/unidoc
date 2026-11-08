@@ -12,10 +12,8 @@ extension SymbolGraph {
         }
     }
 }
-extension SymbolGraph.Layer: Equatable where Node: Equatable {
-}
-extension SymbolGraph.Layer: Sendable where Node: Sendable, Node.ID: Sendable {
-}
+extension SymbolGraph.Layer: Equatable where Node: Equatable {}
+extension SymbolGraph.Layer: Sendable where Node: Sendable, Node.ID: Sendable {}
 extension SymbolGraph.Layer {
     /// Appends a new node to the symbol graph layer, and its associated symbol
     /// to the symbol table. This function doesn’t check for duplicates.

@@ -26,10 +26,8 @@ extension Markdown.TextElement {
     /// Does nothing.
     @inlinable public mutating func rewrite(
         by _: (inout Markdown.InlineHyperlink.Target?) throws -> ()
-    ) rethrows {
-    }
+    ) rethrows {}
 
     /// Does nothing.
-    @inlinable public mutating func outline(by _: (Markdown.AnyReference) throws -> Int?) {
-    }
+    @inlinable public mutating func outline(by _: (Markdown.AnyReference) throws -> Int?) {}
 }

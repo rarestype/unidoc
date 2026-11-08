@@ -2,8 +2,7 @@ import UnidocRender
 import URI
 
 extension Unidoc {
-    @frozen public enum Post {
-    }
+    @frozen public enum Post {}
 }
 extension Unidoc.Post {
     static subscript(package id: Unidoc.Package, scope: Unidoc.PackageMetadataSettings) -> URI {

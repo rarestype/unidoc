@@ -11,8 +11,7 @@ extension Signature {
         }
     }
 }
-extension Signature.Expanded: Sendable where Scalar: Sendable {
-}
+extension Signature.Expanded: Sendable where Scalar: Sendable {}
 extension Signature.Expanded {
     @inlinable public func map<T>(
         _ transform: (Scalar) throws -> T

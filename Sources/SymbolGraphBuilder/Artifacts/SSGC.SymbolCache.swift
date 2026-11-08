@@ -44,8 +44,7 @@ extension SSGC.SymbolCache {
 
         files.parts.sort { $0.basename < $1.basename }
 
-        let dumps: [SSGC.SymbolDump] = try files.parts.map {
-            (id: SymbolGraphPart.ID) in
+        let dumps: [SSGC.SymbolDump] = try files.parts.map { (id: SymbolGraphPart.ID) in
             try {
                 let symbols: SSGC.SymbolDump = try $0 ?? .init(
                     loading: id,

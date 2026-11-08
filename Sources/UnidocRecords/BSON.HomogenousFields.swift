@@ -20,8 +20,7 @@ extension BSON.HomogenousFields: Equatable where Key: Equatable, Value: Equatabl
         a.ordered.elementsEqual(b.ordered) { $0 == $1 }
     }
 }
-extension BSON.HomogenousFields: Sendable where Value: Sendable {
-}
+extension BSON.HomogenousFields: Sendable where Value: Sendable {}
 extension BSON.HomogenousFields: ExpressibleByDictionaryLiteral {
     @inlinable public init(dictionaryLiteral: (Key, Value)...) {
         self.init(ordered: dictionaryLiteral)

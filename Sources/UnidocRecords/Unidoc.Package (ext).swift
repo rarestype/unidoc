@@ -1,5 +1,4 @@
 import BSON
 import Unidoc
 
-extension Unidoc.Package: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Package: BSONDecodable, BSONEncodable {}

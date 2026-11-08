@@ -2,8 +2,7 @@ import UnidocAssets
 import UnidocAssets_System
 import URI
 
-extension Unidoc.Asset: URI.Path.ComponentConvertible {
-}
+extension Unidoc.Asset: URI.Path.ComponentConvertible {}
 extension Unidoc.Asset: Unidoc.CacheKey {
     /// Indicates if the asset will be reloaded from disk when hot-reloading is enabled.
     /// (Some assets will never be reloaded, such as the favicon.)

@@ -5,5 +5,4 @@ extension SwiftVersion {
         case DEVELOPMENT_SNAPSHOT = "DEVELOPMENT-SNAPSHOT"
     }
 }
-extension SwiftVersion.Nightly: BSONDecodable, BSONEncodable {
-}
+extension SwiftVersion.Nightly: BSONDecodable, BSONEncodable {}

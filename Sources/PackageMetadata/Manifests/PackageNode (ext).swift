@@ -66,7 +66,8 @@ extension PackageNode {
                 }
 
                 return .init(
-                    name: $0.name, type: $0.type, dependencies: .init(
+                    name: $0.name, type: $0.type,
+                    dependencies: .init(
                         products: dependencies.sorted(),
                         modules: modules
                     ),

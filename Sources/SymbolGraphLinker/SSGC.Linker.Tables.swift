@@ -423,8 +423,7 @@ extension SSGC.Linker.Tables {
                     context: context,
                     scope: article?.scope ?? decl.phylum.scope(trimming: decl.path)
                 )
-            ) {
-                (outliner: inout SSGC.Outliner) in
+            ) { (outliner: inout SSGC.Outliner) in
                 (
                     article.map {
                         outliner.link(body: $0.combined, file: $0.file)

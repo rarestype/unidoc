@@ -17,5 +17,4 @@ extension Unidoc.Scalar: BSONRepresentable {
         )
     }
 }
-extension Unidoc.Scalar: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Scalar: BSONDecodable, BSONEncodable {}

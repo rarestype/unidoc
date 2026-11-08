@@ -30,8 +30,7 @@ extension HTML.OutputStreamableMarkdown {
         nil
     }
     /// Does nothing.
-    @inlinable public func load(_ reference: Int, into html: inout HTML.ContentEncoder) {
-    }
+    @inlinable public func load(_ reference: Int, into html: inout HTML.ContentEncoder) {}
 }
 extension HTML.OutputStreamableMarkdown {
     /// Equivalent to ``render(to:)``, but ignores all errors.

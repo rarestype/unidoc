@@ -23,11 +23,13 @@ import Testing
             path: "/test%24file.text"
         )
 
-        #expect(computed == """
+        #expect(
+            computed == """
             AWS4-HMAC-SHA256 \
             Credential=AKIAIOSFODNN7EXAMPLE/20130524/us-east-1/s3/aws4_request,\
             SignedHeaders=date;host;x-amz-content-sha256;x-amz-date;x-amz-storage-class,\
             Signature=5c7844d25514be6e8f67c6199292dea5ed17cd8a5561043b75fbc6bddf745f6b
-            """)
+            """
+        )
     }
 }

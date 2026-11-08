@@ -16,5 +16,4 @@ extension Unidoc.GraphType: CustomStringConvertible {
         }
     }
 }
-extension Unidoc.GraphType: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.GraphType: BSONDecodable, BSONEncodable {}

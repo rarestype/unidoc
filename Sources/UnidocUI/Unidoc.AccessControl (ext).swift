@@ -9,7 +9,8 @@ extension Unidoc.AccessControl {
 
         if  let user: Unidoc.User {
             return .init(
-                global: .authenticated(user.level), rights: .of(
+                global: .authenticated(user.level),
+                rights: .of(
                     account: user.id,
                     access: user.access,
                     rulers: package.rulers

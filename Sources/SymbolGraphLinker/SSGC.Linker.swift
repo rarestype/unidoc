@@ -235,10 +235,12 @@ extension SSGC.Linker {
         let kept: [SSGC.Decl] = decls.filter {
             guard
             let scalar: Int32 = self.tables.allocate(decl: $0, language: language) else {
-                self.tables.diagnostics[nil] = .warning("""
+                self.tables.diagnostics[nil] = .warning(
+                    """
                     Declaration '\($0.path)' was synthesized by multiple modules in this \
                     package and only one copy will be kept
-                    """)
+                    """
+                )
                 return false
             }
 

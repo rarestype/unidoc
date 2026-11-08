@@ -9,5 +9,4 @@ extension UnqualifiedPath: RawRepresentable {
         self.init(splitting: rawValue[...]) { $0 == " " }
     }
 }
-extension UnqualifiedPath: BSONDecodable, BSONEncodable {
-}
+extension UnqualifiedPath: BSONDecodable, BSONEncodable {}

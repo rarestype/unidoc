@@ -9,8 +9,7 @@ public protocol TextOutputStreamableMarkdown: TextOutputStreamable, CustomString
 }
 extension TextOutputStreamableMarkdown {
     /// Does nothing.
-    @inlinable public func load(_ reference: Int, into utf8: inout [UInt8]) {
-    }
+    @inlinable public func load(_ reference: Int, into utf8: inout [UInt8]) {}
 }
 extension TextOutputStreamableMarkdown {
     @inlinable public func write(to stream: inout some TextOutputStream) {

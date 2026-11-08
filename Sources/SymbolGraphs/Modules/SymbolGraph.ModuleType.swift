@@ -27,5 +27,4 @@ extension SymbolGraph.ModuleType: LosslessStringConvertible {
         self.init(rawValue: description)
     }
 }
-extension SymbolGraph.ModuleType: BSONStringDecodable, BSONStringEncodable {
-}
+extension SymbolGraph.ModuleType: BSONStringDecodable, BSONStringEncodable {}

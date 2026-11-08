@@ -18,8 +18,7 @@ extension Unidoc.Registrar {
         coordinators: [Unidoc.BuildCoordinator],
         in database: Unidoc.Database
     ) async {
-        await withTaskGroup(of: Void.self) {
-            (tasks: inout TaskGroup<Void>) in
+        await withTaskGroup(of: Void.self) { (tasks: inout TaskGroup<Void>) in
 
             for coordinator: Unidoc.BuildCoordinator in coordinators {
                 tasks.addTask {

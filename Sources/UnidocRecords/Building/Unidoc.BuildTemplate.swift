@@ -6,8 +6,7 @@ extension Unidoc {
         public var toolchain: PatchVersion?
         public var platform: Symbol.Triple?
 
-        @inlinable public init() {
-        }
+        @inlinable public init() {}
 
         @inlinable public init(toolchain: PatchVersion?, platform: Symbol.Triple?) {
             self.toolchain = toolchain

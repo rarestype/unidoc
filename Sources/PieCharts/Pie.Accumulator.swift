@@ -7,8 +7,7 @@ extension Pie {
         }
     }
 }
-extension Pie.Accumulator: Sendable where Key: Sendable {
-}
+extension Pie.Accumulator: Sendable where Key: Sendable {}
 extension Pie.Accumulator: ExpressibleByDictionaryLiteral {
     @inlinable public init(dictionaryLiteral: (Key, Never)...) {
         self.init(counts: [:])

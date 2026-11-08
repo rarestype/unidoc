@@ -1,5 +1,4 @@
 import ArgumentParser
 import MongoClusters
 
-extension Mongo.Host: @retroactive ExpressibleByArgument {
-}
+extension Mongo.Host: @retroactive ExpressibleByArgument {}

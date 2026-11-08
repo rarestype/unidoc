@@ -192,10 +192,12 @@ extension SSGC.OutlineResolver {
         if  doclink.path.isEmpty {
             guard
             let origin: Int32 = self.origin else {
-                self.diagnostics[source] = .warning("""
+                self.diagnostics[source] = .warning(
+                    """
                     same-page links are only valid within documentation that generates \
                     browsable pages
-                    """)
+                    """
+                )
                 return nil
             }
 

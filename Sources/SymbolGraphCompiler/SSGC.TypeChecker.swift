@@ -32,7 +32,8 @@ extension SSGC.TypeChecker {
             guard id == part.culture else {
                 throw CultureError.init(
                     underlying: SSGC.UnexpectedModuleError.culture(
-                        part.culture, in: .init(
+                        part.culture,
+                        in: .init(
                             culture: part.culture,
                             colony: part.colony
                         )
@@ -357,23 +358,27 @@ extension SSGC.TypeChecker {
         do {
             return try conditions.simplified(with: self.declarations)
         } catch SSGC.ConstraintReductionError.chimaeric(let reduced, from: let lists) {
-            throw AssertionError.init(message: """
+            throw AssertionError.init(
+                message: """
                 Failed to simplify constraints for conditional conformance \
                 (\(target)) of '\(type.value.path)' because multiple conflicting \
                 conformances unify to a heterogeneous set of constraints
 
                 Declared constraints: \(lists.map(\.humanReadable))
                 Simplified constraints: \(reduced.humanReadable)
-                """)
+                """
+            )
         } catch SSGC.ConstraintReductionError.redundant(let reduced, from: let lists) {
-            throw AssertionError.init(message: """
+            throw AssertionError.init(
+                message: """
                 Failed to simplify constraints for conditional conformance \
                 (\(target)) of '\(type.value.path)' due to multiple conflicting conditional
                 conformances parsed from Swift compiler output
 
                 Declared constraints: \(lists.map(\.humanReadable))
                 Simplified constraints: \(reduced.humanReadable)
-                """)
+                """
+            )
         }
     }
     private mutating func computeConformances(
@@ -463,25 +468,31 @@ extension SSGC.TypeChecker {
             }
 
             guard heir.id == relationship.source.heir else {
-                throw AssertionError.init(message: """
+                throw AssertionError.init(
+                    message: """
                     Found feature '\(feature.value.path)' on type '\(heir.value.path)' \
                     (\(heir.id)) but the feature itself may only be inherited by a type with \
                     mangled name matching \(relationship.source.heir)
-                    """)
+                    """
+                )
             }
             guard
             let conformance: Symbol.Decl = feature.scopes.first else {
-                throw AssertionError.init(message: """
+                throw AssertionError.init(
+                    message: """
                     Declaration '\(feature.value.path)' has '\(feature.access)' access but \
                     has no known lexical parents
-                    """)
+                    """
+                )
             }
 
             guard feature.scopes.count == 1 else {
-                throw AssertionError.init(message: """
+                throw AssertionError.init(
+                    message: """
                     Declaration '\(feature.value.path)' is not eligible for feature \
                     inheritance because it has \(feature.scopes.count) lexical parents
-                    """)
+                    """
+                )
             }
 
             guard
@@ -516,12 +527,14 @@ extension SSGC.TypeChecker {
             if  group.extendee == relationship.source.heir {
                 group.add(feature: feature.id, by: culture)
             } else {
-                throw AssertionError.init(message: """
+                throw AssertionError.init(
+                    message: """
                     Found feature '\(feature.value.path)' on type '\(heir.value.path)' \
                     (\(heir.id)) from extension (\(block)) but the feature itself \
                     may only be inherited by a type with mangled name matching \
                     \(relationship.source.heir)
-                    """)
+                    """
+                )
             }
         }
     }

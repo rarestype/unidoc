@@ -60,5 +60,4 @@ extension Unidoc.EditionStateReport {
         case FAILED_UNKNOWN
     }
 }
-extension Unidoc.EditionStateReport.Phase: JSONEncodable, JSONDecodable {
-}
+extension Unidoc.EditionStateReport.Phase: JSONEncodable, JSONDecodable {}

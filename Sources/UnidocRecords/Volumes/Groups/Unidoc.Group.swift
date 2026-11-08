@@ -20,5 +20,4 @@ extension Unidoc.Group {
 extension Unidoc.Group: Comparable {
     @inlinable public static func < (a: Self, b: Self) -> Bool { a.rawValue < b.rawValue }
 }
-extension Unidoc.Group: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Group: BSONDecodable, BSONEncodable {}

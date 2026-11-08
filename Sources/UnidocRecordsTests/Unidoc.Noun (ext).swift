@@ -24,7 +24,8 @@ extension Unidoc.Noun {
                 hash: hash
             ),
             type: .stem(
-                citizenship, .init(
+                citizenship,
+                .init(
                     language: language,
                     phylum: phylum,
                     kinks: [],

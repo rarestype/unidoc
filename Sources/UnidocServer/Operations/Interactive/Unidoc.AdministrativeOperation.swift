@@ -1,8 +1,7 @@
 import UnidocDB
 
 extension Unidoc {
-    public protocol AdministrativeOperation: RestrictedOperation {
-    }
+    public protocol AdministrativeOperation: RestrictedOperation {}
 }
 
 extension Unidoc.AdministrativeOperation {

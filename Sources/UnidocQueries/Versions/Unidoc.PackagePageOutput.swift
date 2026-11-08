@@ -16,8 +16,7 @@ extension Unidoc {
         }
     }
 }
-extension Unidoc.PackagePageOutput: Sendable where Item: Sendable {
-}
+extension Unidoc.PackagePageOutput: Sendable where Item: Sendable {}
 extension Unidoc.PackagePageOutput: Mongo.MasterCodingModel {
     @frozen public enum CodingKey: String, Sendable {
         case package

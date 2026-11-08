@@ -6,5 +6,4 @@ extension Unidoc.DB.Metadata {
         case robots_txt     = 0x1000
     }
 }
-extension Unidoc.DB.Metadata.Key: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.DB.Metadata.Key: BSONDecodable, BSONEncodable {}

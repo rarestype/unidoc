@@ -5,8 +5,7 @@ import UnidocRecords
 import UnixCalendar
 import UnixTime
 
-extension Unidoc.PackageRepo: Mongo.MasterCodingModel {
-}
+extension Unidoc.PackageRepo: Mongo.MasterCodingModel {}
 extension Unidoc.PackageRepo {
     @inlinable public static func github(
         _ repo: GitHub.Repo,

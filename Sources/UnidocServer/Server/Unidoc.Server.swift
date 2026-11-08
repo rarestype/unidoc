@@ -121,10 +121,12 @@ extension Unidoc.Server {
             try await db.setup()
         } catch let error {
             print(error)
-            print("""
+            print(
+                """
                 warning: some indexes are no longer valid, \
                 the database '\(db.id)' likely needs to be rebuilt
-                """)
+                """
+            )
         }
 
         //  Create the machine users, if they doesn’t exist. Don’t store the cookie, since we

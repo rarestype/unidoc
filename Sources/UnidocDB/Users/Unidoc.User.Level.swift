@@ -14,5 +14,4 @@ extension Unidoc.User {
         case guest = 256
     }
 }
-extension Unidoc.User.Level: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.User.Level: BSONDecodable, BSONEncodable {}

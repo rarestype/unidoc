@@ -254,7 +254,8 @@ import Testing
         #expect(try .init(parsing: json) == expected)
     }
     @Test static func TargetsWithLiteralDependencies() throws {
-        let json: JSON.Object = try .init(parsing: """
+        let json: JSON.Object = try .init(
+            parsing: """
             {
             "dependencies" : [
                 {
@@ -288,7 +289,8 @@ import Testing
             ],
             "type" : "regular"
             }
-            """)
+            """
+        )
         let expected: TargetNode = .init(
             name: "SwiftSyntax",
             dependencies: .init(
@@ -302,7 +304,8 @@ import Testing
         #expect(try .init(json: json) == expected)
     }
     @Test static func TargetsWithTargetDependencies() throws {
-        let json: JSON.Object = try .init(parsing: """
+        let json: JSON.Object = try .init(
+            parsing: """
             {
             "dependencies" : [
                 {
@@ -334,7 +337,8 @@ import Testing
             ],
             "type" : "regular"
             }
-            """)
+            """
+        )
         let expected: TargetNode = .init(
             name: "SymbolAvailability",
             dependencies: .init(
@@ -348,7 +352,8 @@ import Testing
         #expect(try .init(json: json) == expected)
     }
     @Test static func TargetsWithProductDependencies() throws {
-        let json: JSON.Object = try .init(parsing: """
+        let json: JSON.Object = try .init(
+            parsing: """
             {
             "dependencies" : [
                 {
@@ -392,7 +397,8 @@ import Testing
             ],
             "type" : "regular"
             }
-            """)
+            """
+        )
         let expected: TargetNode = .init(
             name: "SymbolResolution",
             dependencies: .init(

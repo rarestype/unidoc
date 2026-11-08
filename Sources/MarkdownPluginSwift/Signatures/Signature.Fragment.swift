@@ -11,8 +11,7 @@ extension Signature {
         }
     }
 }
-extension Signature.Fragment: Sendable where Scalar: Sendable {
-}
+extension Signature.Fragment: Sendable where Scalar: Sendable {}
 extension Signature.Fragment: ExpressibleByStringLiteral {
     @inlinable public init(stringLiteral spelling: String) {
         self.init(spelling)

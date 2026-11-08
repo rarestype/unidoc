@@ -29,8 +29,7 @@ extension Unidoc.ConsoleLogger: Unidoc.ServerLogger {
     public nonisolated func log(_ event: Unidoc.ServerTriggeredEvent) {
         self.events.yield(.server(event))
     }
-    public nonisolated func log(_ event: Unidoc.ClientTriggeredEvent) {
-    }
+    public nonisolated func log(_ event: Unidoc.ClientTriggeredEvent) {}
 
     public func handle(_ event: Unidoc.ServerTriggeredEvent) {
         switch event.type {
@@ -43,8 +42,7 @@ extension Unidoc.ConsoleLogger: Unidoc.ServerLogger {
             self.logs.push(event)
         }
     }
-    public func handle(_ event: Unidoc.ClientTriggeredEvent) {
-    }
+    public func handle(_ event: Unidoc.ClientTriggeredEvent) {}
 
     public func dashboard(
         from server: Unidoc.Server,

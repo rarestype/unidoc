@@ -74,5 +74,4 @@ extension AutomaticHeading: CustomStringConvertible {
         }
     }
 }
-extension AutomaticHeading: HTML.OutputStreamableHeading {
-}
+extension AutomaticHeading: HTML.OutputStreamableHeading {}

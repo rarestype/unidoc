@@ -34,13 +34,15 @@ extension Unidoc {
 
                 let path: FilePath = self.assets.appending(asset.source)
 
-                print(self.long ? """
+                print(
+                    self.long ? """
                     \(path)\t\
                     \(asset.path(prepending: Unidoc.RenderFormat.Assets.version))\t\
                     \(asset.type)
                     """ : """
                     \(path)
-                    """)
+                    """
+                )
             }
         }
     }

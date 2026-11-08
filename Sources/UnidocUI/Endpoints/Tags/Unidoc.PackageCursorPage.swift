@@ -22,8 +22,7 @@ extension Unidoc {
 extension Unidoc.PackageCursorPage: Unidoc.RenderablePage {
     var title: String { "\(self.name) · \(self.package.symbol)" }
 }
-extension Unidoc.PackageCursorPage: Unidoc.StaticPage {
-}
+extension Unidoc.PackageCursorPage: Unidoc.StaticPage {}
 extension Unidoc.PackageCursorPage: Unidoc.ApplicationPage {
     func main(_ main: inout HTML.ContentEncoder, format: Unidoc.RenderFormat) {
         main[.header, { $0.class = "hero" }] {

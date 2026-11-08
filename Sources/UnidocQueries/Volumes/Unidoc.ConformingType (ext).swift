@@ -1,4 +1,3 @@
 import MongoQL
 
-extension Unidoc.ConformingType: Mongo.MasterCodingModel {
-}
+extension Unidoc.ConformingType: Mongo.MasterCodingModel {}

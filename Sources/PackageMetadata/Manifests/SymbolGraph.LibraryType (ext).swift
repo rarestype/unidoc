@@ -1,5 +1,4 @@
 import JSON
 import SymbolGraphs
 
-extension SymbolGraph.LibraryType: JSONDecodable, JSONEncodable {
-}
+extension SymbolGraph.LibraryType: JSONDecodable, JSONEncodable {}

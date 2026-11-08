@@ -76,8 +76,7 @@ extension Markdown.SwiftLanguage {
         code utf8: [UInt8],
         diff: [(Range<Int>, Markdown.DiffType?)]
     ) -> Markdown.Bytecode {
-        .init {
-            (output: inout Markdown.BinaryEncoder) in
+        .init { (output: inout Markdown.BinaryEncoder) in
 
             let parsed: SourceFileSyntax = utf8.withUnsafeBufferPointer {
                 Parser.parse(source: $0)

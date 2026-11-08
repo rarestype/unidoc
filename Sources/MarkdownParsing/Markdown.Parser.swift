@@ -34,7 +34,8 @@ extension Markdown.Parser: Markdown.ParsingEngine {
         onError: (any Error, SourceReference<Markdown.Source>) -> ()
     ) -> [Markdown.BlockElement] {
         let document: _Document = .init(
-            parsing: source.text, options: [
+            parsing: source.text,
+            options: [
                 .parseBlockDirectives,
                 .parseSymbolLinks,
             ]

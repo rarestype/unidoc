@@ -11,12 +11,9 @@ extension SymbolGraph {
         }
     }
 }
-extension SymbolGraph.TableStorage: Equatable where Element: Equatable {
-}
-extension SymbolGraph.TableStorage: Hashable where Element: Hashable {
-}
-extension SymbolGraph.TableStorage: Sendable where Element: Sendable {
-}
+extension SymbolGraph.TableStorage: Equatable where Element: Equatable {}
+extension SymbolGraph.TableStorage: Hashable where Element: Hashable {}
+extension SymbolGraph.TableStorage: Sendable where Element: Sendable {}
 extension SymbolGraph.TableStorage {
     @inlinable internal mutating func reserveCapacity(_ capacity: Int) {
         self.elements.reserveCapacity(capacity)
@@ -38,9 +35,11 @@ extension SymbolGraph.TableStorage: ExpressibleByArrayLiteral {
         if  arrayLiteral.count <= 0x00_ff_ff_ff {
             self.init(elements: arrayLiteral)
         } else {
-            fatalError("""
+            fatalError(
+                """
                 SymbolGraph.TableStorage index overflow (\(arrayLiteral.count) elements)
-                """)
+                """
+            )
         }
     }
 }

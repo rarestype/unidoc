@@ -269,9 +269,11 @@ extension SSGC.Toolchain {
                 "\($0)"
             }.joined(separator: ",")
 
-            arguments.append("""
+            arguments.append(
+                """
                 -experimental-allowed-reexported-modules=\(whitelist)
-                """)
+                """
+            )
         }
 
         #if os(macOS)
@@ -318,28 +320,34 @@ extension SSGC.Toolchain {
 
             switch code {
             case 139:
-                print("""
+                print(
+                    """
                     Failed to dump symbols for module '\(options.moduleName)' due to \
                     SIGSEGV from 'swift symbolgraph-extract'. \
                     This is a known bug in the Apple Swift compiler; see \
                     https://github.com/apple/swift/issues/68767.
-                    """)
+                    """
+                )
             case 134:
-                print("""
+                print(
+                    """
                     Failed to dump symbols for module '\(options.moduleName)' due to \
                     SIGABRT from 'swift symbolgraph-extract'. \
                     This is a known bug in the Apple Swift compiler; see \
                         https://github.com/swiftlang/swift/issues/75318.
-                    """)
+                    """
+                )
 
             case let code:
-                print("""
+                print(
+                    """
                     Failed to dump symbols for module '\(options.moduleName)' due to exit \
                     code \(code) from 'swift symbolgraph-extract'. \
                     If the output above indicates 'swift symbolgraph-extract' exited \
                     gracefully, this is most likely because the module.modulemap file declares \
                     a different module name than we detected from the package manifest.
-                    """)
+                    """
+                )
             }
         } catch {
             // this empty block needed to dodge swift 6.3 compiler crash

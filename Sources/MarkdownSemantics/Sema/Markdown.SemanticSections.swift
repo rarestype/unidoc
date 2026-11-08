@@ -24,8 +24,9 @@ extension Markdown {
 }
 extension Markdown.SemanticSections {
     public func anchors() -> [UCF.AnchorMangling: String] {
-        self.article.reduce(into: [:]) {
-            (anchors: inout [UCF.AnchorMangling: String], block: Markdown.BlockElement) in
+        self.article.reduce(
+            into: [:]
+        ) { (anchors: inout [UCF.AnchorMangling: String], block: Markdown.BlockElement) in
 
             block.traverse {
                 let id: String?

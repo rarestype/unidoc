@@ -41,9 +41,11 @@ extension Unidoc.RestrictedOperation {
             case .web(nil, _):
                 guard
                 let oauth: GitHub.OAuth = context.server.github?.oauth else {
-                    return .error("""
+                    return .error(
+                        """
                         Server is running in secure mode with no OAuth capability!\n
-                        """)
+                        """
+                    )
                 }
 
                 let login: Unidoc.LoginPage = .init(
@@ -74,9 +76,11 @@ extension Unidoc.RestrictedOperation {
             //  We ban this here, so that we can conditionally enforce permissions later by
             //  checking if the user is human.
             if  case .guest = rights.level {
-                return .forbidden("""
+                return .forbidden(
+                    """
                     It looks like you are somehow logged in as an organization.\n
-                    """)
+                    """
+                )
             }
 
             guard self.admit(user: rights) else {

@@ -1,5 +1,4 @@
 import BSON
 import UnidocAPI
 
-extension Unidoc.BuildStage: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.BuildStage: BSONDecodable, BSONEncodable {}

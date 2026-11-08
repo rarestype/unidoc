@@ -7,12 +7,9 @@ extension InlineArray: ExpressibleByArrayLiteral {
         self = arrayLiteral.count == 1 ? .one(arrayLiteral[0]) : .some(arrayLiteral)
     }
 }
-extension InlineArray: Equatable where Element: Equatable {
-}
-extension InlineArray: Hashable where Element: Hashable {
-}
-extension InlineArray: Sendable where Element: Sendable {
-}
+extension InlineArray: Equatable where Element: Equatable {}
+extension InlineArray: Hashable where Element: Hashable {}
+extension InlineArray: Sendable where Element: Sendable {}
 extension InlineArray: Sequence {
     @inlinable public func withContiguousStorageIfAvailable<T>(
         _ body: (UnsafeBufferPointer<Element>) throws -> T
@@ -28,8 +25,7 @@ extension InlineArray: Sequence {
         self.count
     }
 }
-extension InlineArray: MutableCollection {
-}
+extension InlineArray: MutableCollection {}
 extension InlineArray: RandomAccessCollection {
     @inlinable public var startIndex: Int {
         switch self {

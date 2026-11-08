@@ -909,9 +909,13 @@ extension Unidoc.Router {
             return nil
         }
 
-        return .sync(redirect: .permanent("""
+        return .sync(
+            redirect: .permanent(
+                """
                 \(Unidoc.ServerRoot.docs)/\(next.prefix { $0 != "." })/all-symbols
-                """))
+                """
+            )
+        )
     }
 
     private mutating func stats() -> Unidoc.AnyOperation? {

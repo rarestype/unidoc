@@ -1,5 +1,4 @@
 import BSON
 import SemanticVersions
 
-extension PatchVersion: BSONDecodable, BSONEncodable {
-}
+extension PatchVersion: BSONDecodable, BSONEncodable {}

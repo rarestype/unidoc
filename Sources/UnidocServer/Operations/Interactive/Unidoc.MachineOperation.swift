@@ -5,8 +5,7 @@ import UnidocDB
 import UnidocRender
 
 extension Unidoc {
-    public protocol MachineOperation: RestrictedOperation {
-    }
+    public protocol MachineOperation: RestrictedOperation {}
 }
 extension Unidoc.MachineOperation {
     /// The machine endpoints are restricted to administratrices and machine users.

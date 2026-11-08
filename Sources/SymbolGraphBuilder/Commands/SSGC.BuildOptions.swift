@@ -83,8 +83,7 @@ extension SSGC {
             help: "Run in CI mode under the specified validation level"
         ) var ci: ValidationBehavior? = nil
 
-        public init() {
-        }
+        public init() {}
     }
 }
 extension SSGC.BuildOptions {

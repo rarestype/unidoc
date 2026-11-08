@@ -12,5 +12,4 @@ extension Unidoc {
         case compilingCode = 3
     }
 }
-extension Unidoc.BuildStage: JSONDecodable, JSONEncodable {
-}
+extension Unidoc.BuildStage: JSONDecodable, JSONEncodable {}

@@ -2,8 +2,7 @@ import BSON
 import SymbolGraphs
 import Unidoc
 
-extension Unidoc.Edition: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Edition: BSONDecodable, BSONEncodable {}
 extension Unidoc.Edition {
     @inlinable public var global: Unidoc.Scalar { self + 0 * .global }
 

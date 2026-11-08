@@ -17,5 +17,4 @@ extension Unidoc {
         case failedForUnknownReason = 256
     }
 }
-extension Unidoc.BuildFailure: JSONDecodable, JSONEncodable {
-}
+extension Unidoc.BuildFailure: JSONDecodable, JSONEncodable {}

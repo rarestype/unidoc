@@ -21,8 +21,9 @@ extension Unidoc.GroupLayer {
                     $0 { $0[.coalesce] = (group[.unconditional], [] as [Never]) }
                     $0 { $0[.map] = conditional.map { $0[.id] } }
                     $0 {
-                        $0[.reduce] = conditional.flatMap {
-                            (type: Mongo.Variable<Unidoc.ConformingType>) -> Mongo.Expression in
+                        $0[.reduce] = conditional.flatMap { (
+                                type: Mongo.Variable<Unidoc.ConformingType>
+                            ) -> Mongo.Expression in
                             .expr {
                                 $0[.map] = type.constraints.map { $0[.nominal] }
                             }

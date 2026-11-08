@@ -9,8 +9,9 @@ extension HTTP.Server where Self: Unidoc.Server {
         with encryption: HTTP.ServerEncryptionLayer? = nil
     ) async throws {
         try await self._setup()
-        try await withThrowingTaskGroup(of: Void.self) {
-            (tasks: inout ThrowingTaskGroup<Void, any Error>) in
+        try await withThrowingTaskGroup(
+            of: Void.self
+        ) { (tasks: inout ThrowingTaskGroup<Void, any Error>) in
 
             for handle: Unidoc.PluginHandle in self.plugins.values {
                 tasks.addTask {

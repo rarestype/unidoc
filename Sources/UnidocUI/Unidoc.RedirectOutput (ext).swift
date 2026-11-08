@@ -32,7 +32,8 @@ extension Unidoc.RedirectOutput {
             )
 
             let display: Unidoc.DocsEndpoint.NotFoundPage = .init(
-                context, sidebar: .module(
+                context,
+                sidebar: .module(
                     volume: context.volume,
                     origin: nil,
                     tree: nil
