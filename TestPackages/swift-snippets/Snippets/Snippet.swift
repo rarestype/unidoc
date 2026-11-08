@@ -16,8 +16,7 @@ extension Enum {
 }
 
 struct `init` {
-    init() {
-    }
+    init() {}
 }
 
 func f() {

@@ -8,6 +8,5 @@ extension Barbie.Dreamhouse {
     /// occurrences of the same codelink, such as <doc:Barbie/ID>, into a single
     /// outline. We can also reference standard library types like <doc:Int>. And we can
     /// reference nested standard library types like <doc:Int/max>.
-    public struct Keys {
-    }
+    public struct Keys {}
 }
