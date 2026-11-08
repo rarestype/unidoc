@@ -19,12 +19,9 @@ extension SymbolGraphObject<Void> {
         self.init(metadata: metadata, graph: graph, id: ())
     }
 }
-extension SymbolGraphObject: Identifiable where ID: Hashable {
-}
-extension SymbolGraphObject: Equatable where ID: Equatable {
-}
-extension SymbolGraphObject: Sendable where ID: Sendable {
-}
+extension SymbolGraphObject: Identifiable where ID: Hashable {}
+extension SymbolGraphObject: Equatable where ID: Equatable {}
+extension SymbolGraphObject: Sendable where ID: Sendable {}
 extension SymbolGraphObject<Void> {
     public enum CodingKey: String, Sendable {
         case metadata

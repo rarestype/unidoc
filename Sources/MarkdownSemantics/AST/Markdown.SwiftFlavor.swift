@@ -1,8 +1,7 @@
 import MarkdownAST
 
 extension Markdown {
-    @frozen public enum SwiftFlavor {
-    }
+    @frozen public enum SwiftFlavor {}
 }
 extension Markdown.SwiftFlavor: Markdown.ParsingFlavor {
     /// Gives anchors to all level 2 and 3 headings.

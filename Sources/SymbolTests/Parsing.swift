@@ -22,9 +22,12 @@ import Testing
 
     @Test static func Compound() {
         let expected: Symbol.Decl.Vector = .init(
-            .init(.s, ascii: """
+            .init(
+                .s,
+                ascii: """
                 s12IdentifiablePsRlzCrlE2idSOvp
-                """),
+                """
+            ),
             self: .init(.s, ascii: "Sq")
         )
         #expect(
@@ -57,27 +60,41 @@ import Testing
 
     @Test static func MacroDollarIdentifier() {
         let expected: Symbol.Decl.Vector = .init(
-            .init(.s, ascii: """
+            .init(
+                .s,
+                ascii: """
                 9FluentKit5ModelPAAE4_$idAA10IDPropertyCyx7IDValueQzGvp
-                """),
+                """
+            ),
             self: .init(.s, ascii: "17HummingbirdFluent12PersistModelC")
         )
 
-        #expect(Symbol.USR.init("""
+        #expect(
+            Symbol.USR.init(
+                """
                 s:9FluentKit5ModelPAAE4_$idAA10IDPropertyCyx7IDValueQzGvp\
                 ::SYNTHESIZED::s:17HummingbirdFluent12PersistModelC
-                """) == .vector(expected))
+                """
+            ) == .vector(expected)
+        )
     }
 
     @Test static func ObjectiveC() {
-        let expected: Symbol.Decl = .init(.c, ascii: """
+        let expected: Symbol.Decl = .init(
+            .c,
+            ascii: """
             @CM@Alamofire@objc(cs)SessionDelegate(im)URLSession\
             :webSocketTask:didOpenWithProtocol:
-            """)
-        #expect(Symbol.USR.init("""
+            """
+        )
+        #expect(
+            Symbol.USR.init(
+                """
                 c:@CM@Alamofire@objc(cs)SessionDelegate(im)URLSession\
                 :webSocketTask:didOpenWithProtocol:
-                """) == .scalar(expected))
+                """
+            ) == .scalar(expected)
+        )
     }
 
     @Test static func Chimaeric() {
@@ -85,20 +102,32 @@ import Testing
             .init(.s, ascii: "SQsE2neoiySbx_xtFZ"),
             self: .init(.c, ascii: "@E@memory_order")
         )
-        #expect(Symbol.USR.init("""
+        #expect(
+            Symbol.USR.init(
+                """
                 s:SQsE2neoiySbx_xtFZ::SYNTHESIZED::c:@E@memory_order
-                """) == .vector(expected))
+                """
+            ) == .vector(expected)
+        )
     }
 
     @Test static func BlockFirstMember() {
-        #expect(Symbol.USR.init("""
+        #expect(
+            Symbol.USR.init(
+                """
                 s:e:s:Sq17ZooExtensionsDeepSiRszlE2ids5NeverOvp
-                """) == .block(.init(name: "s:Sq17ZooExtensionsDeepSiRszlE2ids5NeverOvp")))
+                """
+            ) == .block(.init(name: "s:Sq17ZooExtensionsDeepSiRszlE2ids5NeverOvp"))
+        )
     }
     @Test static func BlockFirstConformance() {
-        #expect(Symbol.USR.init("""
+        #expect(
+            Symbol.USR.init(
+                """
                 s:e:s:Sqs:s8SendableP
-                """) == .block(.init(name: "s:Sqs:s8SendableP")))
+                """
+            ) == .block(.init(name: "s:Sqs:s8SendableP"))
+        )
     }
     @Test static func BlockGibberish() {
         #expect(Symbol.USR.init("s:e: \n!\u{0} 🇺🇸") == .block(.init(name: " \n!\u{0} 🇺🇸")))

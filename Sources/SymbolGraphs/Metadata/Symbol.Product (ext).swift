@@ -1,5 +1,4 @@
 import BSON
 import Symbols
 
-extension Symbol.Product: BSONStringDecodable, BSONStringEncodable {
-}
+extension Symbol.Product: BSONStringDecodable, BSONStringEncodable {}

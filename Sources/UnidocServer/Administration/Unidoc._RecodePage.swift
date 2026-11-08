@@ -5,8 +5,7 @@ import URI
 
 extension Unidoc {
     struct _RecodePage {
-        init() {
-        }
+        init() {}
     }
 }
 extension Unidoc._RecodePage {

@@ -1,4 +1,3 @@
 import MongoQL
 
-extension Unidoc.PackageLicense: Mongo.MasterCodingModel {
-}
+extension Unidoc.PackageLicense: Mongo.MasterCodingModel {}

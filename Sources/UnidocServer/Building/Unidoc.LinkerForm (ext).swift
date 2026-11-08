@@ -1,4 +1,3 @@
 import URI
 
-extension Unidoc.LinkerForm: URI.QueryDecodable {
-}
+extension Unidoc.LinkerForm: URI.QueryDecodable {}

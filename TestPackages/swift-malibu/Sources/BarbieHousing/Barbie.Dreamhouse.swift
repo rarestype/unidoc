@@ -8,8 +8,7 @@ extension Barbie {
     /// occurrences of the same codelink, such as ``Barbie.ID``, into a single
     /// outline. We can also reference standard library types like ``Int``. And we can reference
     /// nested standard library types like ``Int.max``.
-    public enum Dreamhouse {
-    }
+    public enum Dreamhouse {}
 }
 extension Barbie.Dreamhouse {
     /// The keys to this dreamhouse.

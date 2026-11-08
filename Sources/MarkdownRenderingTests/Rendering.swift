@@ -387,26 +387,30 @@ import Testing
             let renderable: Renderable = .init(reference: reference)
             let html: HTML = .init { $0 += renderable }
 
-            #expect(html.description == """
+            #expect(
+                html.description == """
                 <pre><code>\
                 <span class='xk'>let</span> \
                 <span class='xv'>x</span>:\
                 <a class='xt' href='https://swiftinit.org'>Int</a>\
                 </code></pre>
-                """)
+                """
+            )
         }
 
         do {
             let renderable: Renderable = .init(reference: 2)
             let html: HTML = .init { $0 += renderable }
 
-            #expect(html.description == """
+            #expect(
+                html.description == """
                 <pre><code>\
                 <span class='xk'>let</span> \
                 <span class='xv'>x</span>:\
                 <span class='xt'>Int</span>\
                 </code></pre>
-                """)
+                """
+            )
         }
     }
 }

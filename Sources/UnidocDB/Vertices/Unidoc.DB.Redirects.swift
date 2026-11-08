@@ -32,8 +32,7 @@ extension Unidoc.DB.Redirects: Mongo.CollectionModel {
 
     @inlinable public static var indexes: [Mongo.CollectionIndex] { [ Self.indexPaths ] }
 }
-extension Unidoc.DB.Redirects: Mongo.RecodableModel {
-}
+extension Unidoc.DB.Redirects: Mongo.RecodableModel {}
 extension Unidoc.DB.Redirects {
     @discardableResult
     func deleteAll(in volume: Unidoc.Edition) async throws -> Int {

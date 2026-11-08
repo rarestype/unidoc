@@ -20,8 +20,7 @@ extension Unidoc {
 extension Unidoc.UserSettingsPage: Unidoc.RenderablePage {
     var title: String { "Account settings" }
 }
-extension Unidoc.UserSettingsPage: Unidoc.StaticPage {
-}
+extension Unidoc.UserSettingsPage: Unidoc.StaticPage {}
 extension Unidoc.UserSettingsPage: Unidoc.ApplicationPage {
     func main(_ main: inout HTML.ContentEncoder, format: Unidoc.RenderFormat) {
         main[.header, { $0.class = "hero" }] {

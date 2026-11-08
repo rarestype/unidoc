@@ -57,8 +57,7 @@ extension SSGC {
             """
         ) var removeClone: Bool = false
 
-        public init() {
-        }
+        public init() {}
     }
 }
 extension SSGC.SlaveCommand: AsyncParsableCommand {

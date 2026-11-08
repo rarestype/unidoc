@@ -108,10 +108,12 @@ extension Unidoc.TreeMapper {
         let namespace: Symbol.Module = snapshot.namespace(of: foreign),
         let node: Int32 = foreign - snapshot.id,
         let decl: SymbolGraph.Decl = snapshot.decls.nodes[node].decl else {
-            fatalError("""
+            fatalError(
+                """
                 scalar \(foreign) is either not a decl, or not from \
                 \(snapshot.metadata.package.name)!
-                """)
+                """
+            )
         }
 
         let symbol: Symbol.Decl = snapshot.decls.symbols[node]

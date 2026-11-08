@@ -20,8 +20,9 @@ extension Unidoc.LookupAdjacent.Volumes {
     static func += (list: inout Mongo.SetListEncoder, self: Self) {
         list { $0[.map] = self.upstream.map { $0[.linked] } }
         list {
-            $0[.reduce] = self.groups.flatMap {
-                (group: Mongo.Variable<Unidoc.AnyGroup>) -> Mongo.Expression in
+            $0[.reduce] = self.groups.flatMap { (
+                    group: Mongo.Variable<Unidoc.AnyGroup>
+                ) -> Mongo.Expression in
                 .expr {
                     $0[.coalesce] = (group[.zones], [] as [Never])
                 }

@@ -79,8 +79,7 @@ extension Unidoc.DB.Volumes: Mongo.CollectionModel {
         ]
     }
 }
-extension Unidoc.DB.Volumes: Mongo.RecodableModel {
-}
+extension Unidoc.DB.Volumes: Mongo.RecodableModel {}
 extension Unidoc.DB.Volumes {
     func find(named symbol: Symbol.Volume) async throws -> Unidoc.VolumeMetadata? {
         try await session.run(

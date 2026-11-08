@@ -21,5 +21,4 @@ extension Unidoc.LunrEndpoint: Mongo.PipelineEndpoint, Mongo.SingleOutputEndpoin
 extension Unidoc.LunrEndpoint: Unidoc.MediaEndpoint {
     @inlinable public var type: MediaType { .application(.json, charset: .utf8) }
 }
-extension Unidoc.LunrEndpoint: HTTP.ServerEndpoint {
-}
+extension Unidoc.LunrEndpoint: HTTP.ServerEndpoint {}

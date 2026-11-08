@@ -19,6 +19,5 @@ extension SSGC.ArticleError: Diagnostic {
         }
     }
 
-    func emit(details output: inout DiagnosticOutput<SSGC.Symbolicator>) {
-    }
+    func emit(details output: inout DiagnosticOutput<SSGC.Symbolicator>) {}
 }

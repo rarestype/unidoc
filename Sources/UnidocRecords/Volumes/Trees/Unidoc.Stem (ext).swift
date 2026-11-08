@@ -33,5 +33,4 @@ extension Unidoc.Stem {
         return stem
     }
 }
-extension Unidoc.Stem: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Stem: BSONDecodable, BSONEncodable {}

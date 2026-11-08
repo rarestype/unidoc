@@ -1,5 +1,4 @@
 import BSON
 import Symbols
 
-extension Phylum.DeclFlags: BSONDecodable, BSONEncodable {
-}
+extension Phylum.DeclFlags: BSONDecodable, BSONEncodable {}

@@ -41,8 +41,7 @@ extension Unidoc.DB.PackageDependencies: Mongo.CollectionModel {
         ]
     }
 }
-extension Unidoc.DB.PackageDependencies: Mongo.RecodableModel {
-}
+extension Unidoc.DB.PackageDependencies: Mongo.RecodableModel {}
 extension Unidoc.DB.PackageDependencies {
     func update(
         dependent source: Unidoc.Edition,

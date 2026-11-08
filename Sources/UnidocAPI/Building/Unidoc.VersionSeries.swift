@@ -23,5 +23,4 @@ extension Unidoc.VersionSeries: LosslessStringConvertible {
         }
     }
 }
-extension Unidoc.VersionSeries: JSONStringDecodable, JSONStringEncodable {
-}
+extension Unidoc.VersionSeries: JSONStringDecodable, JSONStringEncodable {}

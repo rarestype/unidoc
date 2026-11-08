@@ -7,12 +7,10 @@ extension Markdown {
     /// Unlike inline elements, block elements have reference semantics. This is useful for
     /// running structural markdown algorithms.
     open class BlockElement: TreeElement {
-        @inlinable public init() {
-        }
+        @inlinable public init() {}
 
         /// Renders this element to bytecode.
-        @inlinable open func emit(into _: inout Markdown.BinaryEncoder) {
-        }
+        @inlinable open func emit(into _: inout Markdown.BinaryEncoder) {}
 
         /// Outlines symbolic references in this element, and any **non-block** children it may
         /// have. The implementation must not visit block children, to allow composing this
@@ -21,8 +19,7 @@ extension Markdown {
         /// >   Warning:
         /// >   It is not a good idea to call this method directly if the goal is to outline
         /// >   all references in a document. Instead, wrap the call in ``traverse(with:)``.
-        @inlinable open func outline(by _: (Markdown.AnyReference) throws -> Int?) rethrows {
-        }
+        @inlinable open func outline(by _: (Markdown.AnyReference) throws -> Int?) rethrows {}
 
         /// Visits this block element, and then any block children it may have.
         ///

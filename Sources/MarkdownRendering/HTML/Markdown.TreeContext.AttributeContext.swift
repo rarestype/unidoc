@@ -39,5 +39,4 @@ extension Markdown.TreeContext.AttributeContext {
         }
     }
 }
-extension Markdown.TreeContext.AttributeContext: MarkdownAttributeContext {
-}
+extension Markdown.TreeContext.AttributeContext: MarkdownAttributeContext {}

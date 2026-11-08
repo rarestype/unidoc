@@ -12,12 +12,9 @@ extension Markdown {
         }
     }
 }
-extension Markdown.InlineContainer: Equatable where Element: Equatable {
-}
-extension Markdown.InlineContainer: Hashable where Element: Hashable {
-}
-extension Markdown.InlineContainer: Sendable where Element: Sendable {
-}
+extension Markdown.InlineContainer: Equatable where Element: Equatable {}
+extension Markdown.InlineContainer: Hashable where Element: Hashable {}
+extension Markdown.InlineContainer: Sendable where Element: Sendable {}
 extension Markdown.InlineContainer: Markdown.TreeElement {
     public func emit(into binary: inout Markdown.BinaryEncoder) {
         let context: Markdown.Bytecode.Context

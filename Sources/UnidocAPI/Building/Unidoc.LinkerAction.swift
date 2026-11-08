@@ -26,5 +26,4 @@ extension Unidoc.LinkerAction: LosslessStringConvertible {
         }
     }
 }
-extension Unidoc.LinkerAction: JSONStringDecodable, JSONStringEncodable {
-}
+extension Unidoc.LinkerAction: JSONStringDecodable, JSONStringEncodable {}

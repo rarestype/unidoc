@@ -45,5 +45,4 @@ extension SymbolGraph.OutlineText {
         self.init(path: path[...], fragment: fragment?[...])
     }
 }
-extension SymbolGraph.OutlineText: BSONStringDecodable, BSONStringEncodable {
-}
+extension SymbolGraph.OutlineText: BSONStringDecodable, BSONStringEncodable {}

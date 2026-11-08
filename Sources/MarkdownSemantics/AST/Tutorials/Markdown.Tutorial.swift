@@ -28,6 +28,5 @@ extension Markdown.Tutorial: Markdown.BlockDirectiveType {
         case projectFiles
     }
 
-    public func configure(option: Option, value: Markdown.SourceString) {
-    }
+    public func configure(option: Option, value: Markdown.SourceString) {}
 }

@@ -17,8 +17,7 @@ extension Unidoc {
         }
     }
 }
-extension Unidoc.TextEditorPage: Unidoc.DynamicPage {
-}
+extension Unidoc.TextEditorPage: Unidoc.DynamicPage {}
 extension Unidoc.TextEditorPage: Unidoc.RenderablePage {
     var title: String { "Text editor" }
 }

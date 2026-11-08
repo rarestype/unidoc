@@ -165,8 +165,7 @@ extension Unidoc.Client<HTTP.Client2> {
         let childProcess: SystemProcess = try status.open(
             .readWrite,
             permissions: (.rw, .r, .r)
-        ) {
-            (pipe: FileDescriptor) in
+        ) { (pipe: FileDescriptor) in
 
             try output.open(
                 .writeOnly,
@@ -273,10 +272,12 @@ extension Unidoc.Client<HTTP.Client2> {
         try await self.connect { try await $0.upload(artifact) }
 
         //  The final URL path component might have different casing than the directory name.
-        print("""
+        print(
+            """
             View the generated documentation at:
             https://\(self.http.remote):\(self.port)/tags/\(object.metadata.package.id)
-            """)
+            """
+        )
     }
 }
 extension Unidoc.Client<HTTP.Client1> {
@@ -300,10 +301,12 @@ extension Unidoc.Client<HTTP.Client1> {
 
         try await self.connect { try await $0.upload(artifact) }
 
-        print("""
+        print(
+            """
             View the generated documentation at:
             http://\(self.http.remote):\(self.port)/tags/\(object.metadata.package.id)
-            """)
+            """
+        )
     }
 }
 extension Unidoc.Client {

@@ -1,4 +1,3 @@
 extension AWS {
-    @frozen public enum S3 {
-    }
+    @frozen public enum S3 {}
 }

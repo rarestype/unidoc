@@ -16,5 +16,4 @@ extension Unidoc.Realm: ExpressibleByIntegerLiteral {
 extension Unidoc.Realm {
     @inlinable public static var united: Self { .init(rawValue: 0) }
 }
-extension Unidoc.Realm: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.Realm: BSONDecodable, BSONEncodable {}

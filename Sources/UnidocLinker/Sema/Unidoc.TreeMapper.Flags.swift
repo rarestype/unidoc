@@ -6,5 +6,4 @@ extension Unidoc.TreeMapper {
         case spi = 1
     }
 }
-extension Unidoc.TreeMapper.Flags: JSONEncodable, JSONDecodable {
-}
+extension Unidoc.TreeMapper.Flags: JSONEncodable, JSONDecodable {}

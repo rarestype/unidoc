@@ -164,8 +164,7 @@ extension SSGC.Outliner {
 
         let fold: Int = self.cache.fold
 
-        let details: Markdown.Bytecode = .init {
-            (binary: inout Markdown.BinaryEncoder) in
+        let details: Markdown.Bytecode = .init { (binary: inout Markdown.BinaryEncoder) in
 
             body.details.traverse { $0.outline { self.outline(reference: $0) } }
             body.details.emit(into: &binary)

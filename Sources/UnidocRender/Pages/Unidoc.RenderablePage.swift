@@ -20,8 +20,7 @@ extension Unidoc.RenderablePage {
     @inlinable public func head(
         augmenting _: inout HTML.ContentEncoder,
         format: Unidoc.RenderFormat
-    ) {
-    }
+    ) {}
 }
 extension Unidoc.RenderablePage {
     func rendered(

@@ -1,5 +1,4 @@
 import UnidocRecords
 import URI
 
-extension Unidoc.VolumeSelector: URI.Path.ComponentConvertible {
-}
+extension Unidoc.VolumeSelector: URI.Path.ComponentConvertible {}

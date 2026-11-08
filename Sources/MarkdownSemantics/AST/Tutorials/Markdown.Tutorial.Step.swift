@@ -20,6 +20,5 @@ extension Markdown.Tutorial {
     }
 }
 extension Markdown.Tutorial.Step: Markdown.BlockDirectiveType {
-    final func configure(option: Markdown.NeverOption, value: Markdown.SourceString) {
-    }
+    final func configure(option: Markdown.NeverOption, value: Markdown.SourceString) {}
 }

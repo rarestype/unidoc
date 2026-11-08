@@ -19,12 +19,9 @@ extension SymbolGraph.Table: ExpressibleByArrayLiteral {
         self.init(viewing: arrayLiteral)
     }
 }
-extension SymbolGraph.Table: Equatable where Element: Equatable {
-}
-extension SymbolGraph.Table: Hashable where Element: Hashable {
-}
-extension SymbolGraph.Table: Sendable where Element: Sendable {
-}
+extension SymbolGraph.Table: Equatable where Element: Equatable {}
+extension SymbolGraph.Table: Hashable where Element: Hashable {}
+extension SymbolGraph.Table: Sendable where Element: Sendable {}
 extension SymbolGraph.Table {
     @inlinable public mutating func reserveCapacity(_ capacity: Int) {
         self.storage.reserveCapacity(capacity)

@@ -24,5 +24,4 @@ extension SSGC.ProjectType: LosslessStringConvertible {
         }
     }
 }
-extension SSGC.ProjectType: ExpressibleByArgument {
-}
+extension SSGC.ProjectType: ExpressibleByArgument {}

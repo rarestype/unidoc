@@ -20,12 +20,9 @@ extension LexicalComponents<String> {
         self.last = component
     }
 }
-extension LexicalComponents: Sendable where Last: Sendable {
-}
-extension LexicalComponents: Equatable where Last: Equatable {
-}
-extension LexicalComponents: Hashable where Last: Hashable {
-}
+extension LexicalComponents: Sendable where Last: Sendable {}
+extension LexicalComponents: Equatable where Last: Equatable {}
+extension LexicalComponents: Hashable where Last: Hashable {}
 extension LexicalComponents: RandomAccessCollection {
     @inlinable public var startIndex: Int {
         self.prefix.startIndex

@@ -33,5 +33,4 @@ extension SSGC.ValidationBehavior: LosslessStringConvertible {
         }
     }
 }
-extension SSGC.ValidationBehavior: ExpressibleByArgument {
-}
+extension SSGC.ValidationBehavior: ExpressibleByArgument {}

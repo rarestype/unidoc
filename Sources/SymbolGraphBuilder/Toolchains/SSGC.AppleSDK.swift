@@ -47,8 +47,7 @@ extension SSGC.AppleSDK: LosslessStringConvertible {
         }
     }
 }
-extension SSGC.AppleSDK: ExpressibleByArgument {
-}
+extension SSGC.AppleSDK: ExpressibleByArgument {}
 extension SSGC.AppleSDK {
     private var stem: String {
         switch self {

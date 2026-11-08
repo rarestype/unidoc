@@ -6,5 +6,4 @@ extension SymbolGraph.Article {
         case omit = 0
     }
 }
-extension SymbolGraph.Article.Footer: BSONDecodable, BSONEncodable {
-}
+extension SymbolGraph.Article.Footer: BSONDecodable, BSONEncodable {}

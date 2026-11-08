@@ -223,7 +223,8 @@ import UnidocRecords
         try await self.test(
             "SeeAlsoGeneratedFromTopics",
             running: .init(
-                "swift-malibu", [
+                "swift-malibu",
+                [
                     "barbiecore",
                     "barbie",
                     "plastickeychain.startindex"

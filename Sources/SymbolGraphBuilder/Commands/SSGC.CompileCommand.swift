@@ -94,8 +94,7 @@ extension SSGC {
         var recoverFromAppleBugs:Bool = false
         */
 
-        public init() {
-        }
+        public init() {}
     }
 }
 extension SSGC.CompileCommand {
@@ -215,9 +214,11 @@ extension SSGC.CompileCommand {
                 clean: self.cleanArtifacts
             )
         } else if case "swift"? = self.build.projectName {
-            print("""
+            print(
+                """
                 Warning: 'compile' is deprecated, use the 'build' subcommand instead
-                """)
+                """
+            )
 
             let stdlib: SSGC.StandardLibraryBuild = .init(cache: workspace.cache)
             try stdlib.cache.create(clean: self.cleanArtifacts)
@@ -229,9 +230,11 @@ extension SSGC.CompileCommand {
                 clean: self.cleanArtifacts
             )
         } else {
-            print("""
+            print(
+                """
                 Warning: 'compile' is deprecated, use the 'build' subcommand instead
-                """)
+                """
+            )
 
             let computedPath: FilePath.Directory
 
@@ -240,10 +243,12 @@ extension SSGC.CompileCommand {
             } else if
                 let search: FilePath.Directory = self.search,
                 let name: String = self.build.projectName {
-                print("""
+                print(
+                    """
                     Warning: '--search-path' is deprecated, use '--project-path' with the
                     full path to the project root instead
-                    """)
+                    """
+                )
 
                 computedPath = search / name
             } else {

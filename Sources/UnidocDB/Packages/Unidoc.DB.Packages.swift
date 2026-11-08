@@ -67,8 +67,7 @@ extension Unidoc.DB.Packages: Mongo.CollectionModel {
         ]
     }
 }
-extension Unidoc.DB.Packages: Mongo.RecodableModel {
-}
+extension Unidoc.DB.Packages: Mongo.RecodableModel {}
 extension Unidoc.DB.Packages {
     public func set(
         settings: Unidoc.PackageSettings,
@@ -203,8 +202,7 @@ extension Unidoc.DB.Packages {
 extension Unidoc.DB.Packages {
     func scan() async throws -> Unidoc.TextResource<Unidoc.DB.Metadata.Key> {
         //  TODO: this should project the `_id`
-        let json: JSON = try await .array {
-            (json: inout JSON.ArrayEncoder) in
+        let json: JSON = try await .array { (json: inout JSON.ArrayEncoder) in
 
             try await session.run(
                 command: Mongo.Find<Mongo.Cursor<Unidoc.PackageMetadata>>.init(

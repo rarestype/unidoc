@@ -1,5 +1,4 @@
 import MongoQL
 import UnidocRecords
 
-extension Unidoc.AnyGroup: Mongo.MasterCodingModel {
-}
+extension Unidoc.AnyGroup: Mongo.MasterCodingModel {}

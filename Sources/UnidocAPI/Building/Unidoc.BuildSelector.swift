@@ -19,7 +19,5 @@ extension Unidoc.BuildSelector {
         }
     }
 }
-extension Unidoc.BuildSelector: Equatable where Package: Equatable {
-}
-extension Unidoc.BuildSelector: Sendable where Package: Sendable {
-}
+extension Unidoc.BuildSelector: Equatable where Package: Equatable {}
+extension Unidoc.BuildSelector: Sendable where Package: Sendable {}

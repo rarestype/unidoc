@@ -7,12 +7,9 @@
         self.frame = frame
     }
 }
-extension SourceReference: Equatable where Frame: Equatable {
-}
-extension SourceReference: Hashable where Frame: Hashable {
-}
-extension SourceReference: Sendable where Frame: Sendable {
-}
+extension SourceReference: Equatable where Frame: Equatable {}
+extension SourceReference: Hashable where Frame: Hashable {}
+extension SourceReference: Sendable where Frame: Sendable {}
 extension SourceReference {
     @inlinable public func map<T>(
         _ transform: (Frame) throws -> T

@@ -40,5 +40,4 @@ extension SymbolGraphMetadata.Platform: LosslessStringConvertible {
         self.init(lowercased: description.lowercased())
     }
 }
-extension SymbolGraphMetadata.Platform: BSONStringDecodable, BSONStringEncodable {
-}
+extension SymbolGraphMetadata.Platform: BSONStringDecodable, BSONStringEncodable {}

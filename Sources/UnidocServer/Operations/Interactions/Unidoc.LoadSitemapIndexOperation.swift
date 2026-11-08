@@ -9,14 +9,12 @@ import UnixTime
 
 extension Unidoc {
     /// Generates a sitemap index.
-    struct LoadSitemapIndexOperation: Sendable {
-    }
+    struct LoadSitemapIndexOperation: Sendable {}
 }
 extension Unidoc.LoadSitemapIndexOperation: Unidoc.InteractiveOperation {
     func load(with context: Unidoc.ServerResponseContext) async throws -> HTTP.ServerResponse? {
         let db: Unidoc.DB = try await context.server.db.session()
-        let index: XML.Sitemap = try await .index {
-            (xml: inout XML.Sitemap.ContentEncoder) in
+        let index: XML.Sitemap = try await .index { (xml: inout XML.Sitemap.ContentEncoder) in
 
             try await db.sitemaps.list() {
                 for sitemap: Unidoc.SitemapIndexEntry in $0 {

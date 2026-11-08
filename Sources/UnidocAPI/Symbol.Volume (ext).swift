@@ -1,5 +1,4 @@
 import JSON
 import Symbols
 
-extension Symbol.Volume: JSONStringDecodable, JSONStringEncodable {
-}
+extension Symbol.Volume: JSONStringDecodable, JSONStringEncodable {}

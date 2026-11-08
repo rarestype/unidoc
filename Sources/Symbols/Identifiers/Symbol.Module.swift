@@ -10,8 +10,7 @@ extension Symbol {
 extension Symbol.Module: CustomStringConvertible {
     @inlinable public var description: String { self.mangled }
 }
-extension Symbol.Module: LosslessStringConvertible {
-}
+extension Symbol.Module: LosslessStringConvertible {}
 extension Symbol.Module: ExpressibleByStringLiteral {
     @inlinable public init(stringLiteral: String) {
         self.init(stringLiteral)

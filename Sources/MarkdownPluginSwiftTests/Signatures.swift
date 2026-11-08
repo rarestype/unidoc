@@ -20,17 +20,20 @@ import Testing
         #expect("\(expanded.bytecode.safe)" == decl)
 
         let abridged: Signature<Never>.Abridged = .init(decl)
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func transform<IndexOfResult, ElementOfResult>(\
             (Self.Index, Self.Element) throws -> IndexOfResult?, \
             b: (Self.Index, Self.Element) throws -> ElementOfResult?, \
             c: ((Self.Index, Self.Element) throws -> ())?\
             ) rethrows -> [(IndexOfResult, ElementOfResult)]
-            """)
+            """
+        )
 
         let html: HTML = .init { $0 += expanded.bytecode.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             <span class='xa'>@_spi</span>\
             (<span class='xv'>testing</span>) \
             <span class='xk'>mutating</span> \
@@ -70,7 +73,8 @@ import Testing
             <span class='xt'>Strideable</span>, \
             <span class='xt'>ElementOfResult</span>: \
             <span class='xt'>Sendable</span>
-            """)
+            """
+        )
     }
 
     /// This test checks that the signature parser can correct the upstream bug in
@@ -81,14 +85,18 @@ import Testing
         """
 
         let expanded: Signature<Never>.Expanded = .init(decl)
-        #expect("\(expanded.bytecode.safe)" == """
+        #expect(
+            "\(expanded.bytecode.safe)" == """
             func sum(with other: Self) -> Int
-            """)
+            """
+        )
 
         let abridged: Signature<Never>.Abridged = .init(decl)
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func sum(with: Self) -> Int
-            """)
+            """
+        )
     }
     @Test static func ExpandedWithInoutSelf() {
         let decl: String = """
@@ -96,14 +104,18 @@ import Testing
         """
 
         let expanded: Signature<Never>.Expanded = .init(decl)
-        #expect("\(expanded.bytecode.safe)" == """
+        #expect(
+            "\(expanded.bytecode.safe)" == """
             func sum(with other: inout Self) -> Int
-            """)
+            """
+        )
 
         let abridged: Signature<Never>.Abridged = .init(decl)
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func sum(with: inout Self) -> Int
-            """)
+            """
+        )
     }
 
     @Test static func ExpandedWithResultBuilders() {
@@ -112,7 +124,8 @@ import Testing
         """
 
         let expanded: Signature<Never>.Expanded = .init(
-            decl, linkBoundaries: [
+            decl,
+            linkBoundaries: [
                 6, 13,
                 14, 15,
                 16, 17,
@@ -123,13 +136,16 @@ import Testing
         #expect("\(expanded.bytecode.safe)" == decl)
 
         let abridged: Signature<Never>.Abridged = .init(decl)
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             init(builder:() -> Handler)
-            """)
+            """
+        )
 
         let html: HTML = .init { $0 += expanded.bytecode.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             <span class='xk'>init</span>(\
             <span class='xi'></span>\
             <span class='xa'>@</span>\
@@ -144,7 +160,8 @@ import Testing
             <span class='xa'>D</span>\
             <span class='xa'>&gt;</span> \
             <span class='xv'>builder</span>:() -&gt; <span class='xt'>Handler</span><wbr>)
-            """)
+            """
+        )
     }
 
     @Test static func Malformed() {
@@ -178,17 +195,20 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func transform<IndexOfResult, ElementOfResult>(\
             (Self.Index, Self.Element) throws -> IndexOfResult?, \
             b: (Self.Index, Self.Element) throws -> ElementOfResult?, \
             c: ((Self.Index, Self.Element) throws -> ())?\
             ) rethrows -> [(IndexOfResult, ElementOfResult)]
-            """)
+            """
+        )
 
         let html: HTML = .init { $0 += abridged.bytecode.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             func <span class='xv'>transform</span>&lt;\
             IndexOfResult, ElementOfResult\
             &gt;(\
@@ -199,7 +219,8 @@ import Testing
             <span class='xi'></span><span class='xv'>c</span>: \
             ((Self.Index, Self.Element) throws -&gt; ())?\
             <wbr>) rethrows -&gt; [(IndexOfResult, ElementOfResult)]
-            """)
+            """
+        )
     }
 
     @Test static func AbridgedUnlabeledArguments() {
@@ -209,18 +230,22 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func tion(Int, String.Index)
-            """)
+            """
+        )
 
         let html: HTML = .init { $0 += abridged.bytecode.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             func <span class='xv'>tion</span>(\
             <span class='xi'></span>Int, \
             <span class='xi'></span>String.Index\
             <wbr>)
-            """)
+            """
+        )
     }
 
     @Test static func AbridgedInit() {
@@ -232,15 +257,18 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             init(Mongo.Collection, \
             writeConcern: Mongo.Create<Mode>.WriteConcern?, \
             with: (inout Mongo.Create<Mode>) throws -> ()) rethrows
-            """)
+            """
+        )
 
         let html: HTML = .init { $0 += abridged.bytecode.safe }
 
-        #expect("\(html)" == """
+        #expect(
+            "\(html)" == """
             <span class='xv'>init</span>(\
             <span class='xi'></span>Mongo.Collection, \
             <span class='xi'></span><span class='xv'>writeConcern</span>: \
@@ -248,7 +276,8 @@ import Testing
             <span class='xi'></span><span class='xv'>with</span>: \
             (inout Mongo.Create&lt;Mode&gt;) throws -&gt; ()\
             <wbr>) rethrows
-            """)
+            """
+        )
     }
 
     @Test static func AbridgedBackDeployed() {

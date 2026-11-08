@@ -6,5 +6,4 @@ extension SPM {
         case localSourceControl
     }
 }
-extension SPM.DependencyPinType: JSONDecodable, JSONEncodable {
-}
+extension SPM.DependencyPinType: JSONDecodable, JSONEncodable {}

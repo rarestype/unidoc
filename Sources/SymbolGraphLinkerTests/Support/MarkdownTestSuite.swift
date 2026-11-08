@@ -9,8 +9,7 @@ import Testing
 
 @_spi(testable) import SymbolGraphLinker
 
-protocol MarkdownTestSuite {
-}
+protocol MarkdownTestSuite {}
 extension MarkdownTestSuite {
     static func test(
         snippets: [String: Markdown.Snippet] = [:],
@@ -31,8 +30,7 @@ extension MarkdownTestSuite {
             .init(bytecode: .init(with: $0.emit(into:)))
         }
         let details: MarkdownBinary = .init(
-            bytecode: .init {
-                (encoder: inout Markdown.BinaryEncoder)in
+            bytecode: .init { (encoder: inout Markdown.BinaryEncoder)in
 
                 documentation.details.emit(into: &encoder)
             }

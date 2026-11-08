@@ -2,8 +2,7 @@ import BSON
 import Symbols
 
 /// Uses the ``RawRepresentable`` conformance.
-extension Symbol.Article: BSONDecodable, BSONEncodable {
-}
+extension Symbol.Article: BSONDecodable, BSONEncodable {}
 extension Symbol.Article {
     /// Creates an article symbol.
     @inlinable public static func article(

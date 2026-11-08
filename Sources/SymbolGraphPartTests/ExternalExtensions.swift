@@ -7,10 +7,12 @@ import Testing
     private let symbols: SymbolGraphPart
 
     init() throws {
-        self.symbols = try .load(part: """
+        self.symbols = try .load(
+            part: """
             TestModules/SymbolGraphs/ExternalExtensionsWithConstraints@\
             ExtendableTypesWithConstraints.symbols.json
-            """)
+            """
+        )
     }
 
     @Test(

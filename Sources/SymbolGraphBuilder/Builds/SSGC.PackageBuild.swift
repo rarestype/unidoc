@@ -262,10 +262,12 @@ extension SSGC.PackageBuild {
         case let other: throw SSGC.PackagePathError.init(computed: self.root, manifest: other)
         }
 
-        print("""
+        print(
+            """
             Resolving dependencies for '\(self.id.package)' \
             (swift-tools-version: \(manifest.format))
-            """)
+            """
+        )
 
         let pins: [SPM.DependencyPin]
         do {

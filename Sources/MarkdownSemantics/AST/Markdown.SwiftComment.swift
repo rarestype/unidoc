@@ -2,8 +2,7 @@ import MarkdownAST
 
 extension Markdown {
     /// A variant of ``Markdown.SwiftFlavor`` that clips all headings to a maximum of `h2`.
-    @frozen public enum SwiftComment {
-    }
+    @frozen public enum SwiftComment {}
 }
 extension Markdown.SwiftComment: Markdown.ParsingFlavor {
     /// Clips `h1` headings to `h2`.

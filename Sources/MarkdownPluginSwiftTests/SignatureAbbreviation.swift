@@ -11,9 +11,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             struct S<T, U>
-            """)
+            """
+        )
     }
     @Test static func GenericTypesWithConstrainedParameters() {
         let decl: String = """
@@ -22,9 +24,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             struct S<T, U>
-            """)
+            """
+        )
     }
     @Test static func LabeledFunc() {
         let decl: String = """
@@ -33,9 +37,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(a: T, b: Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func LabeledFuncWithStaticModifier() {
         let decl: String = """
@@ -44,9 +50,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             static func x<T>(a: T, b: Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func LabeledFuncWithMutatingModifier() {
         let decl: String = """
@@ -55,9 +63,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(a: T, b: Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func LabeledFuncWithDefaultArguments() {
         let decl: String = """
@@ -66,9 +76,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(a: T, b: Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledFunc() {
         let decl: String = """
@@ -77,9 +89,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(T, Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledFuncWithDefaultArguments() {
         let decl: String = """
@@ -88,9 +102,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(T, Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledFuncWithAttributedTypes() {
         let decl: String = """
@@ -99,9 +115,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(consuming T, inout Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledFuncWithAttributes() {
         let decl: String = """
@@ -110,9 +128,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             func x<T>(@escaping (T) throws -> Int) rethrows -> Int
-            """)
+            """
+        )
     }
 
     @Test static func LabeledSubscript() {
@@ -122,9 +142,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             subscript(a: Int, b: Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledSubscript() {
         let decl: String = """
@@ -133,9 +155,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             subscript(Int, Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func UnlabeledSubscriptWithConstraints() {
         let decl: String = """
@@ -144,9 +168,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             subscript<T>(T, Int) -> Int
-            """)
+            """
+        )
     }
     @Test static func Var() {
         let decl: String = """
@@ -155,9 +181,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             var x: Int
-            """)
+            """
+        )
     }
     @Test static func LabeledEnumCase() {
         let decl: String = """
@@ -166,9 +194,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             case x(a: Int, b: Int)
-            """)
+            """
+        )
     }
     @Test static func UnlabeledEnumCase() {
         let decl: String = """
@@ -177,9 +207,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             case x(Int, Int)
-            """)
+            """
+        )
     }
     @Test static func UnlabeledEnumCaseWithDefaultArguments() {
         let decl: String = """
@@ -188,9 +220,11 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             case x(Int, Int)
-            """)
+            """
+        )
     }
     @Test static func UnlabeledEnumCaseWithInternalLabel() {
         let decl: String = """
@@ -199,8 +233,10 @@ import Testing
 
         let abridged: Signature<Never>.Abridged = .init(decl)
 
-        #expect("\(abridged.bytecode.safe)" == """
+        #expect(
+            "\(abridged.bytecode.safe)" == """
             case x(Int, Int)
-            """)
+            """
+        )
     }
 }

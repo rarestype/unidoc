@@ -1,2 +1,1 @@
-@frozen public enum AWS {
-}
+@frozen public enum AWS {}

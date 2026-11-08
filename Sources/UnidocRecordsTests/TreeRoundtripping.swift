@@ -13,7 +13,8 @@ import UnidocRecords
     @Test func one() throws {
         try Self.roundtrip(
             Unidoc.TypeTree.init(
-                id: self.id, rows: [
+                id: self.id,
+                rows: [
                     .decl("CryptoKit BTC"),
                 ]
             )
@@ -23,7 +24,8 @@ import UnidocRecords
     @Test func many() throws {
         try Self.roundtrip(
             Unidoc.TypeTree.init(
-                id: self.id, rows: [
+                id: self.id,
+                rows: [
                     .decl("CryptoKit BTC"),
                     .decl("CryptoKit ETH"),
                     .decl("CryptoKit ETH Classic"),
@@ -36,7 +38,8 @@ import UnidocRecords
     @Test func hashed() throws {
         try Self.roundtrip(
             Unidoc.TypeTree.init(
-                id: self.id, rows: [
+                id: self.id,
+                rows: [
                     .decl("CryptoKit BTC"),
                     .decl("CryptoKit ETH"),
                     .decl("CryptoKit ETH Classic"),
@@ -60,7 +63,8 @@ import UnidocRecords
     @Test func stems() throws {
         try Self.roundtrip(
             Unidoc.TypeTree.init(
-                id: self.id, rows: [
+                id: self.id,
+                rows: [
                     .decl(
                         "CryptoKit ETH Classic\tinit(_:)",
                         phylum: .initializer,
@@ -81,7 +85,8 @@ import UnidocRecords
     @Test func customText() throws {
         try Self.roundtrip(
             Unidoc.TypeTree.init(
-                id: self.id, rows: [
+                id: self.id,
+                rows: [
                     .article(
                         "CryptoKit Getting-Started",
                         text: "Getting Started",

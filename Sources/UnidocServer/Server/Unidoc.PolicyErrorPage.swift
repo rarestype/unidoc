@@ -16,8 +16,7 @@ extension Unidoc {
         }
     }
 }
-extension Unidoc.PolicyErrorPage: Unidoc.StatusBearingPage {
-}
+extension Unidoc.PolicyErrorPage: Unidoc.StatusBearingPage {}
 extension Unidoc.PolicyErrorPage: Unidoc.RenderablePage, Unidoc.DynamicPage {
     var title: String { self.heading }
 }

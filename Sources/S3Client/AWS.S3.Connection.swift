@@ -69,7 +69,8 @@ extension AWS.S3.Connection {
 
         case let status:
             throw AWS.S3.RequestError.put(
-                status ?? 0, String.init(
+                status ?? 0,
+                String.init(
                     decoding: response.body,
                     as: Unicode.UTF8.self
                 )
@@ -93,7 +94,8 @@ extension AWS.S3.Connection {
 
         case let status:
             throw AWS.S3.RequestError.get(
-                status ?? 0, String.init(
+                status ?? 0,
+                String.init(
                     decoding: response.body,
                     as: Unicode.UTF8.self
                 )
@@ -120,7 +122,8 @@ extension AWS.S3.Connection {
 
         case let status:
             throw AWS.S3.RequestError.delete(
-                status ?? 0, String.init(
+                status ?? 0,
+                String.init(
                     decoding: response.body,
                     as: Unicode.UTF8.self
                 )

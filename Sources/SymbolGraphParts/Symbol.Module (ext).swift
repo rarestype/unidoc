@@ -1,5 +1,4 @@
 import JSONDecoding
 import Symbols
 
-extension Symbol.Module: JSONStringDecodable {
-}
+extension Symbol.Module: JSONStringDecodable {}

@@ -17,8 +17,7 @@ extension GenericConstraint: Comparable where Scalar: Comparable {
         (lhs.noun, lhs.what, lhs.whom) < (rhs.noun, rhs.what, rhs.whom)
     }
 }
-extension GenericConstraint: Sendable where Scalar: Sendable {
-}
+extension GenericConstraint: Sendable where Scalar: Sendable {}
 extension GenericConstraint {
     @inlinable public func map<T>(
         _ transform: (Scalar) throws -> T?

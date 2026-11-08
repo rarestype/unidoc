@@ -1,8 +1,7 @@
 import SwiftSyntax
 
 extension SignatureSyntax {
-    struct AbridgedVisitor {
-    }
+    struct AbridgedVisitor {}
 }
 extension SignatureSyntax.AbridgedVisitor: SignatureVisitor {
     mutating func register(

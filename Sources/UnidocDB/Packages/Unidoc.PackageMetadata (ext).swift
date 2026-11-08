@@ -3,8 +3,7 @@ import MongoQL
 import UnidocRecords
 import UnixTime
 
-extension Unidoc.PackageMetadata: Mongo.MasterCodingModel {
-}
+extension Unidoc.PackageMetadata: Mongo.MasterCodingModel {}
 extension Unidoc.PackageMetadata {
     @inlinable public var rulers: Unidoc.PackageRulers {
         .init(editors: self.editors, owner: self.repo?.account)

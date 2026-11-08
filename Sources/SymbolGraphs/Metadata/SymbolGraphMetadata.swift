@@ -118,15 +118,17 @@ extension SymbolGraphMetadata {
         case display
         case root
 
-        @available(*, unavailable, message: """
+        @available(
+            *, unavailable, message: """
             This is no longer part of the metadata format (removed 8.0)
-            """)
-        case version
+            """
+        ) case version
 
-        @available(*, unavailable, message: """
+        @available(
+            *, unavailable, message: """
             This is no longer part of the metadata format (removed 8.0)
-            """)
-        case github
+            """
+        ) case github
     }
 }
 extension SymbolGraphMetadata: BSONDocumentEncodable {

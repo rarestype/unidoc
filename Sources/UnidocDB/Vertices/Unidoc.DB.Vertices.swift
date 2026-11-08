@@ -76,12 +76,12 @@ extension Unidoc.DB.Vertices: Mongo.CollectionModel {
         ]
     }
 }
-@available(*, unavailable, message: """
+@available(
+    *, unavailable, message: """
     Vertices contain flags set by the database, which would be lost if they were decoded and \
     re-encoded.
-    """)
-extension Unidoc.DB.Vertices: Mongo.RecodableModel {
-}
+    """
+) extension Unidoc.DB.Vertices: Mongo.RecodableModel {}
 extension Unidoc.DB.Vertices {
     @discardableResult
     func insert(

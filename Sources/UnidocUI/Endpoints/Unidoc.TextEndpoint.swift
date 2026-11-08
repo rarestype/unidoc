@@ -26,5 +26,4 @@ extension Unidoc.TextEndpoint: Unidoc.MediaEndpoint {
         }
     }
 }
-extension Unidoc.TextEndpoint: HTTP.ServerEndpoint {
-}
+extension Unidoc.TextEndpoint: HTTP.ServerEndpoint {}

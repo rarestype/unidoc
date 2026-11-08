@@ -39,5 +39,4 @@ extension SymbolGraph.ProductType: LosslessStringConvertible {
         }
     }
 }
-extension SymbolGraph.ProductType: BSONStringDecodable, BSONStringEncodable {
-}
+extension SymbolGraph.ProductType: BSONStringDecodable, BSONStringEncodable {}

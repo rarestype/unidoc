@@ -1,4 +1,3 @@
 import BSON
 
-extension Unidoc.LinkerAction: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.LinkerAction: BSONDecodable, BSONEncodable {}

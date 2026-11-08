@@ -2,8 +2,7 @@
     case one ((Key, Value))
     case some([Key: Value])
 }
-extension InlineDictionary: Sendable where Key: Sendable, Value: Sendable {
-}
+extension InlineDictionary: Sendable where Key: Sendable, Value: Sendable {}
 extension InlineDictionary: Equatable where Value: Equatable {
     @inlinable public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {

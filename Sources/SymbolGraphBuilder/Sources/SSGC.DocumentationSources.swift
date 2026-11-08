@@ -114,10 +114,12 @@ extension SSGC.DocumentationSources {
             do {
                 index = try self.indexStore(for: swift)
             } catch let error {
-                print("""
+                print(
+                    """
                     Couldn’t load IndexStoreDB library, advanced syntax highlighting will be \
                     disabled! (\(error))
-                    """)
+                    """
+                )
                 index = nil
             }
 
@@ -146,7 +148,8 @@ extension SSGC.DocumentationSources {
                 profiler.linking -= snippet.loadingTime
             }
 
-            print("""
+            print(
+                """
                 Linked documentation!
                     time loading sources    : \(profiler.loadingSources)
                     time linking            : \(profiler.linking)
@@ -155,7 +158,8 @@ extension SSGC.DocumentationSources {
                 \(graph.cultures.reduce(0) { $0 + $1.reexports.unhashed.count })
                 redirects (hashed)  : \
                 \(graph.cultures.reduce(0) { $0 + $1.reexports.hashed.count })
-                """)
+                """
+            )
 
             return graph
         } catch let error {

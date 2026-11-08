@@ -5,5 +5,4 @@ extension Unidoc {
         case protocols = 1
     }
 }
-extension Unidoc.GroupLayer: BSONDecodable, BSONEncodable {
-}
+extension Unidoc.GroupLayer: BSONDecodable, BSONEncodable {}

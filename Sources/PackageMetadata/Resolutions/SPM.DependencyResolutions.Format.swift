@@ -12,5 +12,4 @@ extension SPM.DependencyResolutions.Format: Comparable {
         lhs.rawValue < rhs.rawValue
     }
 }
-extension SPM.DependencyResolutions.Format: JSONDecodable, JSONEncodable {
-}
+extension SPM.DependencyResolutions.Format: JSONDecodable, JSONEncodable {}

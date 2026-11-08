@@ -1,2 +1,1 @@
-@frozen public enum Unidoc {
-}
+@frozen public enum Unidoc {}

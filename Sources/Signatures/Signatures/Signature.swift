@@ -24,8 +24,7 @@ import Availability
         self.spis = spis
     }
 }
-extension Signature: Sendable where Scalar: Sendable {
-}
+extension Signature: Sendable where Scalar: Sendable {}
 extension Signature {
     @inlinable public func map<T>(_ transform: (Scalar) throws -> T) rethrows -> Signature<T> {
         .init(

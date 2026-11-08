@@ -30,8 +30,7 @@ extension XML.Sitemap {
     @inlinable public static func index(
         with encode: (inout ContentEncoder) async throws -> ()
     ) async rethrows -> Self {
-        try await .document {
-            (xml: inout ContentEncoder) in
+        try await .document { (xml: inout ContentEncoder) in
 
             xml.open(.sitemapindex) {
                 $0.xmlns = "http://www.sitemaps.org/schemas/sitemap/0.9"

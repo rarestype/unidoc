@@ -1,2 +1,1 @@
-public enum A {
-}
+public enum A {}
