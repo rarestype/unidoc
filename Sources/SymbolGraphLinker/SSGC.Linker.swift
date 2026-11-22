@@ -175,11 +175,13 @@ extension SSGC.Linker {
         as language: Phylum.Language,
         at offset: Int
     ) {
-        let destinations: [(
+        let destinations: [
+            (
                 allocated: SymbolGraph.Namespace,
                 qualifier: Symbol.Module,
                 decls: [SSGC.Decl]
-            )] = declarations.reduce(into: []) {
+            )
+        ] = declarations.reduce(into: []) {
             guard
             let (range, decls): (ClosedRange<Int32>, [SSGC.Decl]) = self.allocate(
                 deduplicating: $1.decls,

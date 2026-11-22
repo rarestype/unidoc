@@ -27,8 +27,9 @@ extension Unidoc.TextEditorOperation: Unidoc.AdministrativeOperation {
             return nil
         }
 
-        let text: Unidoc.TextResource<Unidoc.DB.Metadata.Key>? =
-        try await db.metadata.find(id: .robots_txt)
+        let text: Unidoc.TextResource<Unidoc.DB.Metadata.Key>? = try await db.metadata.find(
+            id: .robots_txt
+        )
 
         let page: Unidoc.TextEditorPage = .init(
             string: try text.map {

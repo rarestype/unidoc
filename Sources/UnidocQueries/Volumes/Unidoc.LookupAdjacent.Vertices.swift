@@ -44,8 +44,12 @@ extension Unidoc.LookupAdjacent.Vertices {
         }
 
         list {
-            let constraints: Mongo.List<GenericConstraint<Unidoc.Scalar>, Mongo.AnyKeyPath> =
-            .init(in: self.vertex / Unidoc.AnyVertex[.signature_generics_constraints])
+            let constraints: Mongo.List<
+                GenericConstraint<Unidoc.Scalar>,
+                Mongo.AnyKeyPath
+            > = .init(
+                in: self.vertex / Unidoc.AnyVertex[.signature_generics_constraints]
+            )
 
             $0[.map] = constraints.map { $0[.nominal] }
         }

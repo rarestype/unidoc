@@ -25,8 +25,13 @@ extension Demangler {
     public func demangle(_ symbol: Symbol.Decl) -> String? {
         // '$s'
         let prefixed: String = "$\(symbol.rawValue)" // not the description!
-        if  let string: UnsafeMutablePointer<Int8> =
-            self.function(prefixed, prefixed.utf8.count, nil, nil, 0) {
+        if  let string: UnsafeMutablePointer<Int8> = self.function(
+                prefixed,
+                prefixed.utf8.count,
+                nil,
+                nil,
+                0
+            ) {
             defer {
                 string.deallocate()
             }
