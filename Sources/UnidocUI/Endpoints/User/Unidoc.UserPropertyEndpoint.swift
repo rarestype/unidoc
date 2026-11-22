@@ -32,8 +32,9 @@ extension Unidoc.UserPropertyEndpoint: HTTP.ServerEndpoint {
             return .notFound("No such user")
         }
         guard
-        let name: String = output.user?.name ??
-        output.packages.first?.package.repo?.origin.owner else {
+        let name: String =
+            output.user?.name ??
+            output.packages.first?.package.repo?.origin.owner else {
             return .notFound("This user has no packages or has not set up her account.")
         }
 

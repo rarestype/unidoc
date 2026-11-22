@@ -290,8 +290,9 @@ extension SSGC.ModuleGraph {
 
                 $0.includePaths += $1.include
 
-                if  let file: FilePath = $1.modulemap ??
-                    scratch?.modulemap(target: $1.module.name) {
+                if  let file: FilePath =
+                        $1.modulemap ??
+                        scratch?.modulemap(target: $1.module.name) {
                     $0.moduleMaps.append(file)
                 }
             }
