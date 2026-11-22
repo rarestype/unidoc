@@ -81,8 +81,13 @@ extension PackageNode {
             }
         }
 
-        let dependenciesDeclared: [Symbol.Package: any Identifiable<Symbol.Package>] =
-        self.dependencies.reduce(into: [:]) { $0[$1.id] = $1 }
+        let dependenciesDeclared: [
+            Symbol.Package: any Identifiable<Symbol.Package>
+        ] = self.dependencies.reduce(
+            into: [:]
+        ) {
+            $0[$1.id] = $1
+        }
 
         let dependenciesBlamed: [any Identifiable<Symbol.Package>] = packages.reduce(
             into: []

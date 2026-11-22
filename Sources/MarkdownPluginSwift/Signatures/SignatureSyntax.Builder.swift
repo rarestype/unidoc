@@ -82,14 +82,16 @@ extension SignatureSyntax.Builder<SignatureSyntax.ExpandedVisitor> {
                 //  Do we still need this?
                 self.encoder[at: .toplevel] += region
             } else if
-                let clause: GenericParameterClauseSyntax =
-                region.as(GenericParameterClauseSyntax.self) {
+                let clause: GenericParameterClauseSyntax = region.as(
+                    GenericParameterClauseSyntax.self
+                ) {
                 self.encode(clause)
             } else if
                 let region: FunctionSignatureSyntax = region.as(FunctionSignatureSyntax.self) {
                 for region: Syntax in region.children(viewMode: .sourceAccurate) {
-                    if  let clause: FunctionParameterClauseSyntax =
-                        region.as(FunctionParameterClauseSyntax.self) {
+                    if  let clause: FunctionParameterClauseSyntax = region.as(
+                            FunctionParameterClauseSyntax.self
+                        ) {
                         self.register(parameters: clause, type: .func)
                     } else {
                         self.encoder += region
@@ -98,8 +100,9 @@ extension SignatureSyntax.Builder<SignatureSyntax.ExpandedVisitor> {
             }
             //  Subscript inputs and outputs are “shallow”
             else if
-                let clause: FunctionParameterClauseSyntax =
-                region.as(FunctionParameterClauseSyntax.self) {
+                let clause: FunctionParameterClauseSyntax = region.as(
+                    FunctionParameterClauseSyntax.self
+                ) {
                 self.register(parameters: clause, type: .subscript)
             } else {
                 self.encoder += region
@@ -109,8 +112,9 @@ extension SignatureSyntax.Builder<SignatureSyntax.ExpandedVisitor> {
 
     private mutating func encode(_ clause: GenericParameterClauseSyntax) {
         for region: Syntax in clause.children(viewMode: .sourceAccurate) {
-            if  let region: GenericParameterListSyntax =
-                region.as(GenericParameterListSyntax.self) {
+            if  let region: GenericParameterListSyntax = region.as(
+                    GenericParameterListSyntax.self
+                ) {
                 for region: GenericParameterSyntax in region {
                     for region: Syntax in region.children(viewMode: .sourceAccurate) {
                         if  let region: TokenSyntax = region.as(TokenSyntax.self),

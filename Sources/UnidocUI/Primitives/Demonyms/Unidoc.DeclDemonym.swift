@@ -52,8 +52,7 @@ extension Unidoc.DeclDemonym {
     }
 
     var phrase: String {
-        let phrase: String =
-        switch self.phylum {
+        let phrase: String = switch self.phylum {
         case .actor:                "an actor"
         case .associatedtype:       "an associated type"
         case .case:                 "an enum case"
