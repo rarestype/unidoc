@@ -43,8 +43,9 @@ extension SPM.DependencyLocation {
         case .remote(let url):  uri = url
         }
 
-        let start: String.Index = uri.lastIndex(of: "/").map(uri.index(after:)) ??
-        uri.startIndex
+        let start: String.Index =
+            uri.lastIndex(of: "/").map(uri.index(after:)) ??
+            uri.startIndex
 
         if  let end: String.Index = uri.lastIndex(of: "."),
             uri[end...] == ".git" {

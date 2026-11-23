@@ -52,8 +52,9 @@ extension Unidoc.RefStateDirectQuery: Mongo.PipelineQuery {
                     }
 
                     $0.loadResources(
-                        associatedTo: Unidoc.VersionState[.edition] /
-                        Unidoc.EditionMetadata[.id],
+                        associatedTo:
+                            Unidoc.VersionState[.edition] /
+                            Unidoc.EditionMetadata[.id],
                         volume: Unidoc.VersionState[.volume],
                         graph: Unidoc.VersionState[.graph]
                     )
